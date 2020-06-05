@@ -8,23 +8,17 @@
 
 **缺点：**不容易理解；不易编写；易错
 
-
-
 **汇编语言：**引入了助记符。例如：`MOV X, 2`
 
 **优点：**比较形象直观
 
 **缺点：**依赖于特定的机器，不同的机器助记符不同，导致程序员必须记住相应机器的助记符；
 
- 编写效率低，一条简单的语句，也需要好几条指令
-
-
+编写效率低，一条简单的语句，也需要好几条指令
 
 **高级语言：**类似于数学定义式或自然语言的简介形式。例如：`x = 2`
 
 **优点：**接近人类的表达习惯；不依赖特定机器；编写效率高
-
-
 
 最终，汇编语言和高级语言都要翻译成机器可以识别的机器语言
 
@@ -33,8 +27,6 @@
 > 高级语言 -&gt; 汇编语言/机器语言（编译）
 
 **编译：将高级语言（源语言）翻译成汇编语言或机器语言（目标语言）的过程**
-
-
 
 ### 编译器的位置
 
@@ -56,14 +48,62 @@
 
 **主要任务：**从左向右逐行扫描源程序的字符，识别出各个单词，确定单词的类型。将识别出的单词转换成同一的**机内表达** —— 词法单元（token）形式
 
-**token：**<种别码，属性值>
+**token：**&lt;种别码，属性值&gt;
 
-|      | 单词类型 |                             种别                             |        种别码        |
-| :--: | :------: | :----------------------------------------------------------: | :------------------: |
-|  1   |  关键字  |                 program、if、else、then、...                 |       一词一码       |
-|  2   |  标识符  |             变量名、数组名、记录名、过程名、...              |       多刺一码       |
-|  3   |   常量   |              整型、浮点型、字符型、布尔型、...               |       一型一码       |
-|  4   |  运算符  | 算术（+ - * / ++ --）；关系（> < == != >= <=）；逻辑（& \| ~） | 一词一码 或 一型一码 |
-|  5   |  界限符  |                       ; ( ) = { }  ...                       |       一词一码       |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:center"></th>
+      <th style="text-align:center">&#x5355;&#x8BCD;&#x7C7B;&#x578B;</th>
+      <th style="text-align:center">&#x79CD;&#x522B;</th>
+      <th style="text-align:center">&#x79CD;&#x522B;&#x7801;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:center">1</td>
+      <td style="text-align:center">&#x5173;&#x952E;&#x5B57;</td>
+      <td style="text-align:center">program&#x3001;if&#x3001;else&#x3001;then&#x3001;...</td>
+      <td style="text-align:center">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
+    </tr>
+    <tr>
+      <td style="text-align:center">2</td>
+      <td style="text-align:center">&#x6807;&#x8BC6;&#x7B26;</td>
+      <td style="text-align:center">&#x53D8;&#x91CF;&#x540D;&#x3001;&#x6570;&#x7EC4;&#x540D;&#x3001;&#x8BB0;&#x5F55;&#x540D;&#x3001;&#x8FC7;&#x7A0B;&#x540D;&#x3001;...</td>
+      <td
+      style="text-align:center">&#x591A;&#x523A;&#x4E00;&#x7801;</td>
+    </tr>
+    <tr>
+      <td style="text-align:center">3</td>
+      <td style="text-align:center">&#x5E38;&#x91CF;</td>
+      <td style="text-align:center">&#x6574;&#x578B;&#x3001;&#x6D6E;&#x70B9;&#x578B;&#x3001;&#x5B57;&#x7B26;&#x578B;&#x3001;&#x5E03;&#x5C14;&#x578B;&#x3001;...</td>
+      <td
+      style="text-align:center">&#x4E00;&#x578B;&#x4E00;&#x7801;</td>
+    </tr>
+    <tr>
+      <td style="text-align:center">4</td>
+      <td style="text-align:center">&#x8FD0;&#x7B97;&#x7B26;</td>
+      <td style="text-align:center">
+        <p>&#x7B97;&#x672F;&#xFF08;+ - * / ++ --&#xFF09;</p>
+        <p>&#x5173;&#x7CFB;&#xFF08;&gt; &lt; == != &gt;= &lt;=&#xFF09;</p>
+        <p>&#x903B;&#x8F91;&#xFF08;&amp; | ~&#xFF09;</p>
+      </td>
+      <td style="text-align:center">
+        <p>&#x4E00;&#x8BCD;&#x4E00;&#x7801;</p>
+        <p>&#x6216;</p>
+        <p>&#x4E00;&#x578B;&#x4E00;&#x7801;</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center">5</td>
+      <td style="text-align:center">&#x754C;&#x9650;&#x7B26;</td>
+      <td style="text-align:center">; ( ) = { } ...</td>
+      <td style="text-align:center">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
+    </tr>
+  </tbody>
+</table>
 
 **例子：**
+
+![](.gitbook/assets/image%20%283%29.png)
+
