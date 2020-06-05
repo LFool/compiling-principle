@@ -53,52 +53,52 @@
 <table>
   <thead>
     <tr>
-      <th style="text-align:center"></th>
-      <th style="text-align:center">&#x5355;&#x8BCD;&#x7C7B;&#x578B;</th>
-      <th style="text-align:center">&#x79CD;&#x522B;</th>
-      <th style="text-align:center">&#x79CD;&#x522B;&#x7801;</th>
+      <th style="text-align:left"></th>
+      <th style="text-align:left">&#x5355;&#x8BCD;&#x7C7B;&#x578B;</th>
+      <th style="text-align:left">&#x79CD;&#x522B;</th>
+      <th style="text-align:left">&#x79CD;&#x522B;&#x7801;</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:center">1</td>
-      <td style="text-align:center">&#x5173;&#x952E;&#x5B57;</td>
-      <td style="text-align:center">program&#x3001;if&#x3001;else&#x3001;then&#x3001;...</td>
-      <td style="text-align:center">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
+      <td style="text-align:left">1</td>
+      <td style="text-align:left">&#x5173;&#x952E;&#x5B57;</td>
+      <td style="text-align:left">program&#x3001;if&#x3001;else&#x3001;then&#x3001;...</td>
+      <td style="text-align:left">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
     </tr>
     <tr>
-      <td style="text-align:center">2</td>
-      <td style="text-align:center">&#x6807;&#x8BC6;&#x7B26;</td>
-      <td style="text-align:center">&#x53D8;&#x91CF;&#x540D;&#x3001;&#x6570;&#x7EC4;&#x540D;&#x3001;&#x8BB0;&#x5F55;&#x540D;&#x3001;&#x8FC7;&#x7A0B;&#x540D;&#x3001;...</td>
+      <td style="text-align:left">2</td>
+      <td style="text-align:left">&#x6807;&#x8BC6;&#x7B26;</td>
+      <td style="text-align:left">&#x53D8;&#x91CF;&#x540D;&#x3001;&#x6570;&#x7EC4;&#x540D;&#x3001;&#x8BB0;&#x5F55;&#x540D;&#x3001;&#x8FC7;&#x7A0B;&#x540D;&#x3001;...</td>
       <td
-      style="text-align:center">&#x591A;&#x8BCD;&#x4E00;&#x7801;</td>
+      style="text-align:left">&#x591A;&#x8BCD;&#x4E00;&#x7801;</td>
     </tr>
     <tr>
-      <td style="text-align:center">3</td>
-      <td style="text-align:center">&#x5E38;&#x91CF;</td>
-      <td style="text-align:center">&#x6574;&#x578B;&#x3001;&#x6D6E;&#x70B9;&#x578B;&#x3001;&#x5B57;&#x7B26;&#x578B;&#x3001;&#x5E03;&#x5C14;&#x578B;&#x3001;...</td>
+      <td style="text-align:left">3</td>
+      <td style="text-align:left">&#x5E38;&#x91CF;</td>
+      <td style="text-align:left">&#x6574;&#x578B;&#x3001;&#x6D6E;&#x70B9;&#x578B;&#x3001;&#x5B57;&#x7B26;&#x578B;&#x3001;&#x5E03;&#x5C14;&#x578B;&#x3001;...</td>
       <td
-      style="text-align:center">&#x4E00;&#x578B;&#x4E00;&#x7801;</td>
+      style="text-align:left">&#x4E00;&#x578B;&#x4E00;&#x7801;</td>
     </tr>
     <tr>
-      <td style="text-align:center">4</td>
-      <td style="text-align:center">&#x8FD0;&#x7B97;&#x7B26;</td>
-      <td style="text-align:center">
+      <td style="text-align:left">4</td>
+      <td style="text-align:left">&#x8FD0;&#x7B97;&#x7B26;</td>
+      <td style="text-align:left">
         <p>&#x7B97;&#x672F;&#xFF08;+ - * / ++ --&#xFF09;</p>
         <p>&#x5173;&#x7CFB;&#xFF08;&gt; &lt; == != &gt;= &lt;=&#xFF09;</p>
         <p>&#x903B;&#x8F91;&#xFF08;&amp; | ~&#xFF09;</p>
       </td>
-      <td style="text-align:center">
+      <td style="text-align:left">
         <p>&#x4E00;&#x8BCD;&#x4E00;&#x7801;</p>
         <p>&#x6216;</p>
         <p>&#x4E00;&#x578B;&#x4E00;&#x7801;</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:center">5</td>
-      <td style="text-align:center">&#x754C;&#x9650;&#x7B26;</td>
-      <td style="text-align:center">; ( ) = { } ...</td>
-      <td style="text-align:center">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
+      <td style="text-align:left">5</td>
+      <td style="text-align:left">&#x754C;&#x9650;&#x7B26;</td>
+      <td style="text-align:left">; ( ) = { } ...</td>
+      <td style="text-align:left">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
     </tr>
   </tbody>
 </table>
@@ -112,3 +112,6 @@
 **语法分析器**从词法分析器输出的token序列中**识别出各类短语**，并**构造语法分析树**
 
 **语法分析树**描述了句子的语法结构
+
+![&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x6811;](.gitbook/assets/image%20%284%29.png)
+
