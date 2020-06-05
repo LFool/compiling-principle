@@ -53,52 +53,52 @@
 <table>
   <thead>
     <tr>
-      <th style="text-align:center"></th>
-      <th style="text-align:center">&#x5355;&#x8BCD;&#x7C7B;&#x578B;</th>
-      <th style="text-align:center">&#x79CD;&#x522B;</th>
-      <th style="text-align:center">&#x79CD;&#x522B;&#x7801;</th>
+      <th style="text-align:left"></th>
+      <th style="text-align:left">&#x5355;&#x8BCD;&#x7C7B;&#x578B;</th>
+      <th style="text-align:left">&#x79CD;&#x522B;</th>
+      <th style="text-align:left">&#x79CD;&#x522B;&#x7801;</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:center">1</td>
-      <td style="text-align:center">&#x5173;&#x952E;&#x5B57;</td>
-      <td style="text-align:center">program&#x3001;if&#x3001;else&#x3001;then&#x3001;...</td>
-      <td style="text-align:center">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
+      <td style="text-align:left">1</td>
+      <td style="text-align:left">&#x5173;&#x952E;&#x5B57;</td>
+      <td style="text-align:left">program&#x3001;if&#x3001;else&#x3001;then&#x3001;...</td>
+      <td style="text-align:left">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
     </tr>
     <tr>
-      <td style="text-align:center">2</td>
-      <td style="text-align:center">&#x6807;&#x8BC6;&#x7B26;</td>
-      <td style="text-align:center">&#x53D8;&#x91CF;&#x540D;&#x3001;&#x6570;&#x7EC4;&#x540D;&#x3001;&#x8BB0;&#x5F55;&#x540D;&#x3001;&#x8FC7;&#x7A0B;&#x540D;&#x3001;...</td>
+      <td style="text-align:left">2</td>
+      <td style="text-align:left">&#x6807;&#x8BC6;&#x7B26;</td>
+      <td style="text-align:left">&#x53D8;&#x91CF;&#x540D;&#x3001;&#x6570;&#x7EC4;&#x540D;&#x3001;&#x8BB0;&#x5F55;&#x540D;&#x3001;&#x8FC7;&#x7A0B;&#x540D;&#x3001;...</td>
       <td
-      style="text-align:center">&#x591A;&#x8BCD;&#x4E00;&#x7801;</td>
+      style="text-align:left">&#x591A;&#x8BCD;&#x4E00;&#x7801;</td>
     </tr>
     <tr>
-      <td style="text-align:center">3</td>
-      <td style="text-align:center">&#x5E38;&#x91CF;</td>
-      <td style="text-align:center">&#x6574;&#x578B;&#x3001;&#x6D6E;&#x70B9;&#x578B;&#x3001;&#x5B57;&#x7B26;&#x578B;&#x3001;&#x5E03;&#x5C14;&#x578B;&#x3001;...</td>
+      <td style="text-align:left">3</td>
+      <td style="text-align:left">&#x5E38;&#x91CF;</td>
+      <td style="text-align:left">&#x6574;&#x578B;&#x3001;&#x6D6E;&#x70B9;&#x578B;&#x3001;&#x5B57;&#x7B26;&#x578B;&#x3001;&#x5E03;&#x5C14;&#x578B;&#x3001;...</td>
       <td
-      style="text-align:center">&#x4E00;&#x578B;&#x4E00;&#x7801;</td>
+      style="text-align:left">&#x4E00;&#x578B;&#x4E00;&#x7801;</td>
     </tr>
     <tr>
-      <td style="text-align:center">4</td>
-      <td style="text-align:center">&#x8FD0;&#x7B97;&#x7B26;</td>
-      <td style="text-align:center">
+      <td style="text-align:left">4</td>
+      <td style="text-align:left">&#x8FD0;&#x7B97;&#x7B26;</td>
+      <td style="text-align:left">
         <p>&#x7B97;&#x672F;&#xFF08;+ - * / ++ --&#xFF09;</p>
         <p>&#x5173;&#x7CFB;&#xFF08;&gt; &lt; == != &gt;= &lt;=&#xFF09;</p>
         <p>&#x903B;&#x8F91;&#xFF08;&amp; | ~&#xFF09;</p>
       </td>
-      <td style="text-align:center">
+      <td style="text-align:left">
         <p>&#x4E00;&#x8BCD;&#x4E00;&#x7801;</p>
         <p>&#x6216;</p>
         <p>&#x4E00;&#x578B;&#x4E00;&#x7801;</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:center">5</td>
-      <td style="text-align:center">&#x754C;&#x9650;&#x7B26;</td>
-      <td style="text-align:center">; ( ) = { } ...</td>
-      <td style="text-align:center">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
+      <td style="text-align:left">5</td>
+      <td style="text-align:left">&#x754C;&#x9650;&#x7B26;</td>
+      <td style="text-align:left">; ( ) = { } ...</td>
+      <td style="text-align:left">&#x4E00;&#x8BCD;&#x4E00;&#x7801;</td>
     </tr>
   </tbody>
 </table>
@@ -120,47 +120,52 @@
 **主要任务：**
 
 1. 收集标识符的属性信息
-   - 种属（Kind）
-     - 简单标量、复合变量（数组、记录、...）、过程、...
-   - 类型（Type）
-     - 整型、实型、字符型、布尔型、指针型、...
-   - 存储位置、长度
-   - 值
-   - 作用域
-   - 参数和返回值信息
-     - 参数个数、参数类型、参数传递方式、返回值类型、...
-
+   * 种属（Kind）
+     * 简单标量、复合变量（数组、记录、...）、过程、...
+   * 类型（Type）
+     * 整型、实型、字符型、布尔型、指针型、...
+   * 存储位置、长度
+   * 值
+   * 作用域
+   * 参数和返回值信息
+     * 参数个数、参数类型、参数传递方式、返回值类型、...
 2. 语义检查
-   - 变量或过程**未经声明就使用**
-   - 变量或过程名**重复声明**
-   - **运算分量**类型不匹配
-   - **操作符**与**操作数**之间的类型不匹配
-     - **数组下标**不是整数
-     - 对**非数组变量**使用数组访问操作符
-     - 对**非过程名**使用过程调用操作符
-     - 过程调用的**参数类型或数目**不匹配
-     - 函数**返回类型**有误
+   * 变量或过程**未经声明就使用**
+   * 变量或过程名**重复声明**
+   * **运算分量**类型不匹配
+   * **操作符**与**操作数**之间的类型不匹配
+     * **数组下标**不是整数
+     * 对**非数组变量**使用数组访问操作符
+     * 对**非过程名**使用过程调用操作符
+     * 过程调用的**参数类型或数目**不匹配
+     * 函数**返回类型**有误
 
 ## 6. 中间代码生成
 
 ### 常用的中间表示形式
 
-- 三地址码
-  - 三地址码由**类似于汇编语言**的指令序列组成，每个指令**最多有三个操作数**
-- 语法结构树/语法树
+* 三地址码
+  * 三地址码由**类似于汇编语言**的指令序列组成，每个指令**最多有三个操作数**
+* 语法结构树/语法树
 
 ### 常用的三地址指令
 
+![&#x5E38;&#x7528;&#x7684;&#x4E09;&#x5730;&#x5740;&#x6307;&#x4EE4;](.gitbook/assets/image%20%285%29.png)
+
 ### 三地址指令的表示
 
-- 四元式
-  - （op, y, z, x）
-- 三元式
-- 间接三元式
+* 四元式
+  * （op, y, z, x）
+* 三元式
+* 间接三元式
 
 ### 三地址指令的四元式表示
 
+![&#x4E09;&#x5730;&#x5740;&#x6307;&#x4EE4;&#x7684;&#x56DB;&#x5143;&#x5F0F;&#x8868;&#x793A;](.gitbook/assets/image%20%286%29.png)
+
 ### 中间代码生成的例子
+
+![](.gitbook/assets/image%20%287%29.png)
 
 ## 7. 目标代码生成器
 
