@@ -71,7 +71,7 @@
       <td style="text-align:center">&#x6807;&#x8BC6;&#x7B26;</td>
       <td style="text-align:center">&#x53D8;&#x91CF;&#x540D;&#x3001;&#x6570;&#x7EC4;&#x540D;&#x3001;&#x8BB0;&#x5F55;&#x540D;&#x3001;&#x8FC7;&#x7A0B;&#x540D;&#x3001;...</td>
       <td
-      style="text-align:center">&#x591A;&#x523A;&#x4E00;&#x7801;</td>
+      style="text-align:center">&#x591A;&#x8BCD;&#x4E00;&#x7801;</td>
     </tr>
     <tr>
       <td style="text-align:center">3</td>
