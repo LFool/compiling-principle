@@ -64,7 +64,81 @@ $$
 
 * * $$S^1 = S^0 S = \epsilon S = S，S^2 = SS，S^3 = SSS，\cdots$$ 
 
-## 2. 文化的定义
+## 2. 文法的定义
 
+$$G = (V_T，V_N，P，S)$$ ****
 
+* $$V_T$$ ：终结符集合
+  * **终结符**是文法所定义的语言的基本符号，有时也称为token
+  * 例： $$V_T = \{ apple，boy，eat，little \}$$ 
+* $$V_N$$ ：非终结符集合
+  * **非终结符**是用来表示语法成分的符号，有时也称为“语法变量”
+  * $$V_T \bigcap V_N = \Phi$$ 
+  * $$V_T \bigcup V_N ：文法符号集$$ 
+  * 例： $$V_N = \{ <句子>，<名词短语>，<动词短语>，<名词>， \cdots \}$$ 
+* $$P$$ ：产生式集合
+  * 产生式描述了将终结符和非终结符组合成串的方法
+  * 产生式的一般形式： $$\alpha \rightarrow\beta$$  读作： $$\alpha$$ 定义为 $$\beta$$
+    * $$\alpha \in (V_T \bigcup V_N) ^ +$$ ，且$$\alpha$$ 中至少包含 $$V_N$$中的一个元素：称为产生式的头部或者左部
+    * $$\beta \in (V_T \bigcup V_N) ^ *$$ ，称为产生式的体或右部
+  * 例： $$P = \{ <句子> \longrightarrow <名词短语><动词短语>，\cdots \}$$ 
+* $$S$$ ：开始符号
+  * $$S \in V_N$$ 。开始符号表示的是该文法中最大的语法成分
+  * 例： $$S = <句子>$$ 
+
+**例：**
+
+ $$ \begin{aligned} G = (\{&id, +, *, (, ) \}, \{ E \}, P, E) \\  P = \{&E \longrightarrow E + E,  \\   &E \longrightarrow E * E,  \\  &E \longrightarrow(E),  \\  &E \longrightarrow id \}  \end{aligned} $$ 
+
+## 3. 语言的定义
+
+有了文法（语言规则），如果判断一个词串是否满足文法的句子？
+
+* 句子的**推导**（派生） - 从**生成**语言的角度
+* 句子的**归约**                 - 从**识别**语言的角度
+
+![](.gitbook/assets/image%20%289%29.png)
+
+**句子和句型**
+
+* 含有非终结符的为句型，只有终结符的为句子
+
+![](.gitbook/assets/image%20%2810%29.png)
+
+**语言的定义**
+
+由文法G的开始符号S推导出的所有句子构成的集合称为文法G生成的语言，记为L\(G\)
+
+## 4. 文法的分类
+
+0型文法
+
+* $$\alpha \rightarrow \beta$$ ： $$\alpha$$ 中至少包含一个非终结符
+
+1型文法（上下文有关文法）
+
+* $$\alpha \rightarrow\beta$$ ： $$\forall \alpha \rightarrow \beta \in P，\mid \alpha \mid \leq \mid \beta \mid$$ 
+
+2型文法（上下文无关文法）
+
+* $$\alpha \rightarrow\beta$$ ： $$\alpha \in V_N$$ 
+
+3型文法（正则文法）
+
+* $$\alpha \rightarrow\beta$$  
+  * 右线性文法： $$A \rightarrow wB 或 A \rightarrow w$$ 
+  * 左线性文法： $$A \rightarrow Bw 或 A \rightarrow w$$ 
+
+## 5. CFG的分析树
+
+![](.gitbook/assets/image%20%288%29.png)
+
+### 二义性文法
+
+如果一个文法可以为某个句子生成多棵分析树，则称这个文法是二义性的
+
+**判定：**对于任意一个上下文无关文法，不存在一个算法，判定它是无二义性的；但可以给出一组充分条件，满足这组充分条件的文法是无二义性的
+
+* 满足，肯定无二义性
+* 不满足，不一定有二义性
 
