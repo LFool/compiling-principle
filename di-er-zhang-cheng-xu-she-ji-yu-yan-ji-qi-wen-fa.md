@@ -4,7 +4,7 @@
 
 ## 1. 基本概念
 
-### 字母表
+### 1.1 字母表
 
 字母表 ∑ 是一个有穷符号集合
 
@@ -12,11 +12,9 @@
 
 #### 运算
 
-**乘积** $$\sum_1 \sum_2 = \{ ab \mid a \in \sum_1 , b \in \sum_2\}$$ 
-
-* **例：** $$\{0,1\}\{a,b\} = \{0a, 0b, 1a, 1b\}$$ 
-
-**n次幂**
+* **乘积** $$\sum_1 \sum_2 = \{ ab \mid a \in \sum_1 , b \in \sum_2\}$$ 
+  * **例：** $$\{0,1\}\{a,b\} = \{0a, 0b, 1a, 1b\}$$ 
+* **n次幂**
 
 $$
 \left\{
@@ -27,17 +25,13 @@ $$
 \right.
 $$
 
-* **例：** $$\{0,1\}^3 = \{0,1\}\{0,1\}\{0,1\} = \{000,001,010,011,100,101,110,111\}$$ 
+* * **例：** $$\{0,1\}^3 = \{0,1\}\{0,1\}\{0,1\} = \{000,001,010,011,100,101,110,111\}$$ 
+* **正闭包** $$\sum^+ = \sum \bigcup \sum^2 \bigcup \sum^3 \bigcup \cdots$$ 
+  * **例：** $$\{a,b,c,d\}^+ = \{a,b,c,d,aa,ab,ac,ad,ba,bb,bc,bd,...,aaa,aab,aac,aad,aba,abb,abc,\cdots\}$$ 
+* **克林闭包** $$\sum^* = \sum^0 \bigcup \sum^+ = \sum^0 \bigcup \sum \bigcup \sum^2 \bigcup \sum^3 \bigcup \cdots$$ 
+  * **例：** $$\{a,b,c,d\}^+ = \{\varepsilon,a,b,c,d,aa,ab,ac,ad,ba,bb,bc,bd,...,aaa,aab,aac,aad,aba,abb,abc,\cdots\}$$ 
 
-**正闭包** $$\sum^+ = \sum \bigcup \sum^2 \bigcup \sum^3 \bigcup \cdots$$ 
-
-* **例：** $$\{a,b,c,d\}^+ = \{a,b,c,d,aa,ab,ac,ad,ba,bb,bc,bd,...,aaa,aab,aac,aad,aba,abb,abc,\cdots\}$$ 
-
-**克林闭包** $$\sum^* = \sum^0 \bigcup \sum^+ = \sum^0 \bigcup \sum \bigcup \sum^2 \bigcup \sum^3 \bigcup \cdots$$ 
-
-* **例：** $$\{a,b,c,d\}^+ = \{\varepsilon,a,b,c,d,aa,ab,ac,ad,ba,bb,bc,bd,...,aaa,aab,aac,aad,aba,abb,abc,\cdots\}$$ 
-
-### 串
+### 1.2 串
 
 设 $$\sum$$ 是一个字母表， $$\forall x \in \sum ^ *$$ ，x称为是$$\sum$$上的一个串
 
@@ -53,13 +47,11 @@ $$
 
 #### 运算
 
-**连接** $$xy$$ 
-
-* $$x = dog$$ 且 $$y = house$$ ，那么 $$xy = doghouse$$ 
-* $$\epsilon S = S \epsilon = S$$ 
-* 设x, y, z 是三个字符串，如果 x = yz，则称 y 是 x 的前缀，z 是 x 的后缀
-
-**幂** 
+* **连接** $$xy$$ 
+  * $$x = dog$$ 且 $$y = house$$ ，那么 $$xy = doghouse$$ 
+  * $$\epsilon S = S \epsilon = S$$ 
+  * 设x, y, z 是三个字符串，如果 x = yz，则称 y 是 x 的前缀，z 是 x 的后缀
+* **幂** 
 
 $$
 \left\{
@@ -70,7 +62,7 @@ S ^ n & =  S ^ {n - 1}S && , n \geq 1 \\
 \right.
 $$
 
-* $$S^1 = S^0 S = \epsilon S = S，S^2 = SS，S^3 = SSS，\cdots$$ 
+* * $$S^1 = S^0 S = \epsilon S = S，S^2 = SS，S^3 = SSS，\cdots$$ 
 
 ## 2. 文化的定义
 
