@@ -123,7 +123,7 @@ $$G = (V_T，V_N，P，S)$$ ****
 
 * $$\alpha \rightarrow\beta$$ ： $$\alpha \in V_N$$ 
 
-3型文法（正则文法）
+3型文法（正规文法、有限自动机）
 
 * $$\alpha \rightarrow\beta$$  
   * 右线性文法： $$A \rightarrow wB 或 A \rightarrow w$$ 
