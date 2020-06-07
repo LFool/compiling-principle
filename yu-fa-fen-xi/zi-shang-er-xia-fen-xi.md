@@ -31,24 +31,32 @@
 
 **两个目标：克服回溯；消除左递归**
 
+\*\*\*\*
+
 ### **3.1 消除左递归的两种情况**
 
-**一个文法消除左递归的条件**
+**一个文法可以消除左递归的条件**
 
 * 不含以 $$\epsilon $$ 为右部的产生式
 * 不含回路 $$P \stackrel{+} \Longrightarrow P$$ 
 
 #### **3.1.2 直接消除左递归**
 
-\*\*\*\*$$P \rightarrow P \alpha \mid \beta$$                          ****$$\longrightarrow$$                   ****$$\begin{aligned}  P & \Rightarrow P \alpha \\       & \Rightarrow P \alpha \alpha \\        & \Rightarrow \cdots \cdots\\       & \Rightarrow P \alpha \cdots \alpha  \\  & \Rightarrow \beta \alpha \cdots \alpha  \\    \end{aligned}$$ 
+引例：
 
-改写： ****$$\begin{aligned} P &\rightarrow \beta P' \\ P' &\rightarrow \alpha P' \mid \epsilon \\ \end{aligned}$$          $$\longrightarrow$$                    ****$$\begin{aligned}   P & \Rightarrow  \beta P' \\       & \Rightarrow  \beta \alpha  P' \\     & \Rightarrow  \beta \alpha \alpha  P' \\        & \Rightarrow \cdots \cdots\\        & \Rightarrow \beta \alpha \cdots \alpha P'  \\   & \Rightarrow \beta \alpha \cdots \alpha  \\    \end{aligned}$$ 
+                             ****$$P \rightarrow P \alpha \mid \beta$$             ****$$\longrightarrow$$                   ****$$\begin{aligned}  P & \Rightarrow P \alpha \\       & \Rightarrow P \alpha \alpha \\        & \Rightarrow \cdots \cdots\\       & \Rightarrow P \alpha \cdots \alpha  \\  & \Rightarrow \beta \alpha \cdots \alpha  \\    \end{aligned}$$ 
 
-一般而言，假定 $$P$$ ，满足 $$P \rightarrow P \alpha_1 \mid P \alpha_2 \mid \dots \mid P \alpha_m \mid \beta_1 \mid \beta_2 \mid \dots \mid \beta_n$$ ，其中，每个 $$\alpha$$ 都不等于 $$\epsilon$$ ，每个 $$\beta$$ 都不以 $$P$$ 开头
+消除左递归后： ****$$\begin{aligned} P &\rightarrow \beta P' \\ P' &\rightarrow \alpha P' \mid \epsilon \\ \end{aligned}$$          $$\longrightarrow$$                    ****$$\begin{aligned}   P & \Rightarrow  \beta P' \\       & \Rightarrow  \beta \alpha  P' \\     & \Rightarrow  \beta \alpha \alpha  P' \\        & \Rightarrow \cdots \cdots\\        & \Rightarrow \beta \alpha \cdots \alpha P'  \\   & \Rightarrow \beta \alpha \cdots \alpha  \\    \end{aligned}$$ 
+
+
+
+**一般而言，假定** $$P$$ **，满足** $$P \rightarrow P \alpha_1 \mid P \alpha_2 \mid \dots \mid P \alpha_m \mid \beta_1 \mid \beta_2 \mid \dots \mid \beta_n$$ **，其中，每个** $$\alpha$$ **都不等于** $$\epsilon$$ **，每个** $$\beta$$ **都不以** $$P$$ **开头**
 
 **消除左递归的通式：** $$\begin{aligned} P & \rightarrow \beta_1 P' \mid \beta_2 P' \mid \dots \mid \beta_n P' \\ P' & \rightarrow \alpha_1 P' \mid \alpha_2 P' \mid \dots \mid \alpha_m P' \mid \epsilon \end{aligned}$$ 
 
-**例：**文法 $$G(E)$$ ：
+
+
+例：文法 $$G(E)$$ ：
 
 $$\begin{aligned} E &\rightarrow E + T \mid T \\ T & \rightarrow T * F \mid F \\ F & \rightarrow (E) \mid i \end{aligned}$$                $$\underrightarrow{\text{消除左递归}}$$           $$\begin{aligned}  E &\rightarrow T E' \\ E' &\rightarrow +TE' \mid \epsilon \\ T & \rightarrow F T' \\  T' & \rightarrow *FT' \mid \epsilon \\ F & \rightarrow (E) \mid i \\ \end{aligned}$$ 
 
@@ -85,7 +93,7 @@ $$\begin{aligned}  S &\rightarrow Q c \mid c \\  Q & \rightarrow R b \mid b \\  
 
 3. 化简由 2 所得的文法，去除那些从开始符号出发永远都无法到达的非终结符产生的规则
 
-**举例：**
+### **3.3 举例**
 
 \*\*\*\*$$\begin{aligned}  & P_1 &&\rightarrow P_2 a_1  \\    &P_2 &&\rightarrow P_3 a_2  \\    &P_i &&\rightarrow \cdots  \\    &P_{n - 1} &&\rightarrow P_n a_{n-1} \\    &P_n &&\rightarrow P_1 a_n \mid \gamma_n \\    \end{aligned}$$ ****
 
@@ -103,7 +111,7 @@ $$\begin{aligned}  S &\rightarrow Q c \mid c \\  Q & \rightarrow R b \mid b \\  
   >
   >         j = n - 1; $$P_n \rightarrow P_{n-1} a_{n-2}a_{n-3} \cdots a_1a_n \mid \gamma_n  \Longrightarrow P_n \rightarrow P_na_{n-1} a_{n-2} \cdots a_1a_n \mid \gamma_n$$
 
-Result：
+消除左递归后的结果：
 
 $$P_n \rightarrow \gamma_n P_n'  \\  P_n' \rightarrow a_{n-1} a_{n-2} \cdots a_1a_n P_n' \mid \epsilon $$ 
 
