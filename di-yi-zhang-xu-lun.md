@@ -42,7 +42,7 @@
 
 ## 2. 编译系统的结构
 
-![&#x7F16;&#x8BD1;&#x7CFB;&#x7EDF;&#x7684;&#x7ED3;&#x6784;](.gitbook/assets/image%20%282%29.png)
+![&#x7F16;&#x8BD1;&#x7CFB;&#x7EDF;&#x7684;&#x7ED3;&#x6784;](.gitbook/assets/image%20%2852%29.png)
 
 ## 3. 词法分析
 
