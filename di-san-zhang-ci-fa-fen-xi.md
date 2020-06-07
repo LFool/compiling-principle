@@ -22,13 +22,13 @@
 
 **注：词法分析器作为一个独立子程序，但是其处理不作为一遍。并非词法分析器一遍扫描源程序，然后将结果交给语法分析器。**
 
-![](.gitbook/assets/image%20%2811%29.png)
+![](.gitbook/assets/image%20%2812%29.png)
 
 ## 2. 词法分析器的设计
 
 ### **2.1 词法分析器的结构**
 
-![&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x7684;&#x7ED3;&#x6784;](.gitbook/assets/image%20%2831%29.png)
+![&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x7684;&#x7ED3;&#x6784;](.gitbook/assets/image%20%2846%29.png)
 
 ### **2.2 输入、预处理**
 
@@ -40,7 +40,7 @@
 
 **导致超前搜索的原因：**由于语言规则不够严格，程序员可以把基本字当做标识符使用等，导致词法分析器需要去扫描到该代词的前面，才可以确定单词的种类。
 
-![](.gitbook/assets/image%20%2829%29.png)
+![](.gitbook/assets/image%20%2843%29.png)
 
 对于第一行需要扫描到**逗号**才可以确定 DO 是基本字；对于第二行需要扫描到**点**才可以确定DO99K是标识符
 
@@ -50,7 +50,7 @@
 * **基本字作为特殊的标识符来处理**，使用保留字表
 * 基本字、标识符和常数（或标号）之间没有确定的运算符或界符作为间隔，则必须**使用一个空格作为间隔**
 
-![](.gitbook/assets/image%20%2827%29.png)
+![](.gitbook/assets/image%20%2839%29.png)
 
 ### 2.4 状态转换图
 
@@ -59,20 +59,20 @@
 * **结点**代表状态，用圆圈表示
 * 状态之间用**箭弧**连接，箭弧上的标记（字符）代表射出该状态下可能出现的输入字符或者字符类
 * 一张转换图只包含**有限个状态**，其中有一个为**初态**，**至少要有一个终态**
-* \*\*\*\*![](.gitbook/assets/image%20%2825%29.png) ****
+* \*\*\*\*![](.gitbook/assets/image%20%2837%29.png) ****
 
 **状态转换图可用于识别（接收）一定的字符串**
 
 * 若存在一条从初态到某一终态的道路，且这条路上所有弧上的标记付连接成的字（串）等于 $$\alpha$$ ，则称 $$\alpha$$ 为该状态转换图所识别（接收）
-* 识别标识符的状态转换图：![](.gitbook/assets/image%20%2834%29.png) 
-* 识别整数的状态转换图：![](.gitbook/assets/image%20%2812%29.png) 
+* 识别标识符的状态转换图：![](.gitbook/assets/image%20%2851%29.png) 
+* 识别整数的状态转换图：![](.gitbook/assets/image%20%2817%29.png) 
 * **注：终态上一个 \* 代表到达终态时回退一个字符**
 
 ### 2.5 词法分析器的示例
 
 **助记符：**直接用编码表示不便于记忆，因此用助记符来表示编码
 
-![](.gitbook/assets/image%20%2830%29.png)
+![](.gitbook/assets/image%20%2845%29.png)
 
 **状态转换图的实现**
 
@@ -82,7 +82,7 @@
 
 1. 对**不含回路的分叉结点**，可用一组`IF-THEN-ELSE`语句实现
 
-   ![](.gitbook/assets/image%20%2816%29.png) 
+   ![](.gitbook/assets/image%20%2823%29.png) 
 
    ```c
    GetChar( );
@@ -98,7 +98,7 @@
 
 2. 对**含回路的状态结点**，可对应一段由 `WHILE` 结构和 `IF` 语句构成的程序
 
-   ![](.gitbook/assets/image%20%2826%29.png) 
+   ![](.gitbook/assets/image%20%2838%29.png) 
 
    ```c
    GetChar( );
@@ -177,7 +177,7 @@ $$(DFA)M = (S, \sum, f, S_0, F)$$ 其中：
 4. $$S_0 \in S$$ 是**唯一**的一个**初态**
 5. $$F \subseteq S$$ ：终态集（**可空**）
 
-![](.gitbook/assets/image%20%2823%29.png)
+![](.gitbook/assets/image%20%2833%29.png)
 
 ### 3.3 非确定有限自动机（NFA）
 
@@ -189,7 +189,7 @@ $$(NFA)M = (S, \sum, f, S_0, F)$$ 其中：
 4. $$S_0 \in S$$ 非空**初态集合**
 5. $$F \subseteq S$$ ：终态集（**可空**）
 
-![](.gitbook/assets/image%20%2815%29.png)
+![](.gitbook/assets/image%20%2821%29.png)
 
 ### **3.4 DFA 和 NFA 的关系**
 
@@ -212,15 +212,110 @@ $$(NFA)M = (S, \sum, f, S_0, F)$$ 其中：
 
 1. 添加新初态结点 $$X$$ 和终态结点 $$Y$$ ， $$X,Y  \notin S$$ ，从 $$X$$ 到 $$S_0$$ 中任意状态结点连一条 $$\epsilon $$ 箭弧，从 $$F$$ 中任意状态结点连一条 $$\epsilon $$ 箭弧到 $$Y$$ 
 
-   ![](.gitbook/assets/image%20%2828%29.png) $$\longrightarrow$$ ![](.gitbook/assets/image%20%2819%29.png) 
+   ![](.gitbook/assets/image%20%2841%29.png) $$\longrightarrow$$ ![](.gitbook/assets/image%20%2826%29.png) 
 
-2. 根据三条规则进行分裂，让箭弧上的标记变为单个字符
+2. 根据下面三条规则进行分裂，让箭弧上的标记变为单个字符
 
-   * ![](.gitbook/assets/image%20%2817%29.png) 
-   * ![](.gitbook/assets/image%20%2814%29.png) 
-   * ![](.gitbook/assets/image%20%2821%29.png) 
+   * ![](.gitbook/assets/image%20%2824%29.png) 
+   * ![](.gitbook/assets/image%20%2819%29.png) 
+   * ![](.gitbook/assets/image%20%2831%29.png) 
 
-   ![](.gitbook/assets/image%20%2819%29.png) $$\longrightarrow$$ ![](.gitbook/assets/image%20%2822%29.png) 
+   ![](.gitbook/assets/image%20%2826%29.png) $$\longrightarrow$$ ![](.gitbook/assets/image%20%2832%29.png) 
+
+3. 确定化：消除 $$\epsilon$$ 和下一状态唯一化（采用子集法）
+
+   * 找出第一行第一列的 $$\epsilon - closure(\{X\})$$ ，并求出这一列的 $$I_a$$ 和 $$I_b$$ 
+   * 检查$$I_a$$ 和 $$I_b$$ 是否在表中的第一列出现，未曾出现的话，就加入第一列中进行计算
+   * 重复上述过程，直至第二、三列的子集全部出现在第一列中为止
+
+![](.gitbook/assets/image%20%2836%29.png)
+
+![](.gitbook/assets/image%20%2844%29.png)
+
+### 3.6 正规式与有限自动机的等价性
+
+定理：
+
+* 对任何FA M，都存在一个正规式 $$r$$ ，使得 $$L(r) = L(M)$$ 
+* 对任何正规式 $$r$$ ，都存在一个FA M ，使得 $$L(M) = L(r)$$ 
+
+### 3.7 NFA M 转化为 正规式 $$r$$ 
+
+1. 同 NFA 转化为 DFA 的第一步骤
+2. NFA 转化为 DFA 的第二步骤的逆过程
+
+   ![](.gitbook/assets/image%20%2830%29.png) ![](.gitbook/assets/image%20%2849%29.png) 
+
+3. 通过第二步骤可以将 NFA 的所有箭弧化成一条，即可得出正规式 $$r$$ 
+
+### 3.8 正规式 $$r$$ 转化为 NFA M 
+
+1. ![](.gitbook/assets/image%20%2842%29.png) 
+2. ![](.gitbook/assets/image%20%2848%29.png) 
+3. ![](.gitbook/assets/image%20%2832%29.png) 
+4. 还可以通过子集法将NFA 转化为 DFA
+
+### 3.9 确定有限自动机的化简
+
+**两个状态等价：**如果从状态 $$s$$ 出发能读出某个字 $$\alpha$$ 而停止于终态，那么同样，从 $$t$$ 出发也能读出 $$\alpha$$ 而停止于终态；反之亦然
+
+**化简基本思想：**把 M 的状态集划分为一些不相交的子集，使得任何两个不同的子集的状态都是可区别的，而同一个子集的任何两个状态是等价的
+
+第一步：首先划分为终态和非终态
+
+第二步：对某个 $$I^{(i)}$$ ，令 $$I^{(i)} = \{ S_1, S_2, \cdots,S_k \}$$ ，若存在一个输入字符 $$a$$ 使得 $$I_a^{(i)}$$ 不会包含在现行 $$\pi$$ 的某个子集 $$I^{(j)}$$ 中，则至少应把 $$I^{(i)}$$ 分为两个部分。
+
+![](.gitbook/assets/image%20%2822%29.png)
+
+![](.gitbook/assets/image%20%2815%29.png)
+
+![](.gitbook/assets/image%20%2840%29.png)
+
+### 3.10 正规文法
+
+2型（上下文无关文法，非确定下推自动机）
+
+* $$A \rightarrow \beta$$ ，其中 $$A \in V_N ; \beta \in (V_T \bigcup V_N)^*$$ 
+
+3型（正规文法，有限自动机）
+
+* 右线性文法
+  * $$A \rightarrow \alpha B 或者 A \rightarrow \alpha$$ ，其中 $$\alpha \in V_T^* ; A,B \in V_N$$ 
+* 左线性文法
+  * $$A \rightarrow B\alpha 或者 A \rightarrow \alpha$$ ，其中 $$\alpha \in V_T^* ; A,B \in V_N$$ 
+
+### 3.11 正规文法与有限自动机的等价性
+
+定理：
+
+* 对每一个右线性正规文法 $$G$$ 和左线性正规文法 $$G$$ ，都存在一个有限自动机 \(FA\) M，使得 $$L(M) = L(G)$$ 
+* 对每一个FA M，都存在一个右线性正规文法 $$G_R$$ 和左线性正规文法 $$G_L$$ ，使得 $$L(M) = L(G_R) = L(G_L)$$ 
+
+### 3.12 正规文法 转化为 有限自动机
+
+**右线性文法** $$\rightarrow$$ **有限自动机** （根据 A 经过 0 到达 B 的方法 连线）
+
+\*\*\*\*![](.gitbook/assets/image%20%2827%29.png) ****$$\rightarrow$$ ****![](.gitbook/assets/image%20%2820%29.png) 
+
+**左线性文法** $$\rightarrow$$ **有限自动机** （根据 C 经过 0 到达 F 的方法 连线）
+
+\*\*\*\*![](.gitbook/assets/image%20%2813%29.png)  ****$$\rightarrow$$ ![](.gitbook/assets/image%20%2814%29.png) 
+
+### 3.13 总结
+
+通过这一节所有的内容梳理了正规表达式、有限自动机之间的关系、联系和转换。
+
+给出下面的图，一目了然
+
+![](.gitbook/assets/image%20%2811%29.png)
 
 ## 4. 词法分析器的自动产生 -- LEX 
+
+工作过程：
+
+* 首先，对每条识别规则 $$P_i$$ 构造出一个相应的非确定有限自动机 $$M_i$$ 
+* 通过转化：NFA $$\rightarrow$$ DFA
+* 化简 DFA
+
+可见 LEX 的工作过程就是我们上面总结的相互转化，它大大简化了词法分析过程，程序员只需要把正规式或者正规文法输入到 LEX 中，即可以自动生成出最简化的 DFA
 
