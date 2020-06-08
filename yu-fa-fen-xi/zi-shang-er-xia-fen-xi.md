@@ -125,6 +125,8 @@ $$P_n \rightarrow \gamma_n P_n'  \\  P_n' \rightarrow a_{n-1} a_{n-2} \cdots a_1
 
 两个步骤：构建终结首符集 $$FIRST(\alpha)$$ 、构建 $$FOLLOW(A)$$ 
 
+
+
 #### 构造 $$FIRST(\alpha)$$ 
 
 $$FIRST(\alpha)$$ 的作用是：明确告诉下一个要匹配的字符哪一个非终结符可以推导出来，即保存每个非终结符可以推出的第一个字符的集合。
@@ -133,7 +135,38 @@ $$FIRST(\alpha)$$ 的作用是：明确告诉下一个要匹配的字符哪一�
 
 假设 $$A$$ 的规则是： $$A \rightarrow \delta\beta_1 \mid \delta\beta_2 \mid \dots \mid \delta\beta_n \mid \gamma_1 \mid \gamma_2 \mid \dots \gamma_m$$ ，其中，每个 $$\gamma$$ 不以 $$\delta$$ 开头，那么就可以改写这些规则来消除功能左因子 $$\delta$$ ，改写后为： $$A \rightarrow \delta A' \mid \gamma_1 \mid \gamma_2 \mid \dots \gamma_m \\ A' \rightarrow \beta_1 \mid \beta_2 \mid \dots \mid \beta_n$$ 
 
+**正式构造：**唯一原则，把能推出的第一个字符加入集合，如果能推出的第一个是非终结符，则先放着
 
+构造规则：
+
+* $$A \rightarrow * \Longrightarrow FIRST(A) = \{*\}$$ 
+* $$A \rightarrow *T \Longrightarrow FIRST(A) = \{*\}$$ 
+* $$A \rightarrow TE \Longrightarrow FIRST(A) = FIRST(T)$$ ，非 $$\epsilon $$ 元素
+* $$A \rightarrow TEF$$ 
+  * 若 $$FIRST(T)$$ 不含 $$\epsilon$$ ，则只把 $$FIRST(T)$$ 中的元素加入 $$FIRST(A)$$ 
+  * 若 $$FIRST(T)$$ 含有 $$\epsilon$$ ，则先把 $$FIRST(T)$$ 中非 $$\epsilon$$ 元素加入 $$FIRST(A)$$ ，再把 $$FIRST(E)$$ 中非 $$\epsilon$$ 元素加入 $$FIRST(A)$$ 
+  * 若 $$FIRST(E)$$ 含有 $$\epsilon$$ ，则把 $$FIRST(F)$$ 中非 $$\epsilon$$ 元素加入 $$FIRST(A)$$
+  * 以此类推
+  * 若 $$FIRST(T), FIRST(E), FIRST(F)$$ ，均含 $$\epsilon$$ ，则把 $$\epsilon$$ 加入 $$FIRST(A)$$ 
+* 直到所有集合均不发生变化为止
+
+
+
+#### 构造 $$FOLLOW(A)$$ 
+
+紧跟非终结符 $$A$$ 后面的元素的集合
+
+构造规则：
+
+* 将 $$\#$$ 置于开始符号的 $$FOLLOW$$ 集合中
+* $$E \rightarrow TE'$$ ，将 $$FIRST(E')$$ 中的元素加入到 $$FOLLOW(T)$$ 中
+* $$A \rightarrow \alpha B\beta$$ ，若 $$FIRST(\beta)$$ 含有 $$\epsilon$$ ，则把 $$FOLLOW(A)$$ 中的元素加入到 $$FOLLOW(B)$$ 中
+* $$A \rightarrow \alpha B$$ ，则把 $$FOLLOW(A)$$ 中的元素加入到 $$FOLLOW(B)$$ 中
+* $$FOLLOW$$ 集合中永远不加 $$\epsilon$$ 
+
+### 3.5 举例
+
+![](../.gitbook/assets/image%20%2861%29.png)
 
 
 
