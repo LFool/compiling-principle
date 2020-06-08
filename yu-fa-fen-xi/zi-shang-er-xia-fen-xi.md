@@ -33,7 +33,7 @@
 
 \*\*\*\*
 
-### **3.1 消除左递归的两种情况**
+### **3.1 消除左递归**
 
 **一个文法可以消除左递归的条件**
 
@@ -114,6 +114,30 @@ $$\begin{aligned}  S &\rightarrow Q c \mid c \\  Q & \rightarrow R b \mid b \\  
 消除左递归后的结果：
 
 $$P_n \rightarrow \gamma_n P_n'  \\  P_n' \rightarrow a_{n-1} a_{n-2} \cdots a_1a_n P_n' \mid \epsilon $$ 
+
+### 3.4 消除回溯
+
+确保做出的选择唯一正确，这样就可以避免回溯
+
+在讨论消除回溯时，文法已经不存在左递归了
+
+
+
+两个步骤：构建终结首符集 $$FIRST(\alpha)$$ 、构建 $$FOLLOW(A)$$ 
+
+#### 构造 $$FIRST(\alpha)$$ 
+
+$$FIRST(\alpha)$$ 的作用是：明确告诉下一个要匹配的字符哪一个非终结符可以推导出来，即保存每个非终结符可以推出的第一个字符的集合。
+
+**构造前的处理：**提取公共左因子
+
+假设 $$A$$ 的规则是： $$A \rightarrow \delta\beta_1 \mid \delta\beta_2 \mid \dots \mid \delta\beta_n \mid \gamma_1 \mid \gamma_2 \mid \dots \gamma_m$$ ，其中，每个 $$\gamma$$ 不以 $$\delta$$ 开头，那么就可以改写这些规则来消除功能左因子 $$\delta$$ ，改写后为： $$A \rightarrow \delta A' \mid \gamma_1 \mid \gamma_2 \mid \dots \gamma_m \\ A' \rightarrow \beta_1 \mid \beta_2 \mid \dots \mid \beta_n$$ 
+
+
+
+
+
+
 
 
 
