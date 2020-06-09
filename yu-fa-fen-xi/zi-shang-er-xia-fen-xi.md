@@ -290,11 +290,31 @@ LL\(1\)分析法 ——— 假设要用非终结符 A 进行匹配，面临的�
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | $$E$$  | $$E \rightarrow TE'$$  |  |  | $$E \rightarrow TE'$$ |  |  |
 | $$E'$$  |  | $$E' \rightarrow +TE'$$  |  |  | $$E' \rightarrow \epsilon$$  | $$E' \rightarrow \epsilon$$  |
-| $$T$$  | $$T \rightarrow ET'$$  |  |  | $$T \rightarrow ET'$$  |  |  |
+| $$T$$  | $$T \rightarrow FT'$$  |  |  | $$T \rightarrow FT'$$  |  |  |
 | $$T'$$  |  | $$T' \rightarrow \epsilon$$  | $$T' \rightarrow *FT'$$  |  | $$T' \rightarrow \epsilon$$  | $$T' \rightarrow \epsilon$$  |
 | $$F$$  | $$F \rightarrow i$$  |  |  | $$F \rightarrow (E)$$  |  |  |
 
+过程：
 
+| 步骤 | 符号栈 | 输入串 | 所用产生式 |
+| :---: | :---: | :---: | :---: |
+| 0 | $$\#E$$  | $$i * i * i \#$$  |  |
+| 1 | $$\# E'T$$  | $$i * i * i \#$$  | $$E \rightarrow TE'$$  |
+| 2 | $$\# E'T'E$$  | $$i * i * i \#$$  | $$T \rightarrow FT'$$  |
+| 3 |  |  |  |
+| 4 |  |  |  |
+| 5 |  |  |  |
+| 6 |  |  |  |
+| 7 |  |  |  |
+| 8 |  |  |  |
+| 9 |  |  |  |
+| 10 |  |  |  |
+| 11 |  |  |  |
+| 12 |  |  |  |
+| 13 |  |  |  |
+| 14 |  |  |  |
+| 15 |  |  |  |
+| 16 |  |  |  |
 
 
 
