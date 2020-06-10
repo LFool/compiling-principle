@@ -172,3 +172,100 @@
 1. 若有产生式 $$P \rightarrow  \dots a$$ 或 $$P \rightarrow  \dots Qa$$ ，则 $$a \in LASTVT(P)$$ 
 2. 若 $$a \in LASTVT(Q)$$ ，且有产生式 $$P \rightarrow \dots Q$$ ，则 $$a \in LASTVT(P)$$ 
 
+### 5.7 构造集合示例
+
+文法 $$G(E)$$ ：
+
+$$E \rightarrow E + T \mid T \\  T \rightarrow T*F \mid F \\  F \rightarrow P \uparrow F \mid P \\ P \rightarrow (E) \mid i$$ 
+
+**FIRSTVT  集合：**
+
+|  | $$+$$  | $$*$$  | $$\uparrow$$  | $$($$  | $$)$$  | $$i$$  |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $$E$$  | $$\surd$$  | $$\surd$$  | $$\surd$$  | $$\surd$$  |  | $$\surd$$  |
+| $$T$$  |  | $$\surd$$  | $$\surd$$  | $$\surd$$  |  | $$\surd$$  |
+| $$F$$  |  |  | $$\surd$$  | $$\surd$$  |  | $$\surd$$  |
+| $$P$$  |  |  |  | $$\surd$$  |  | $$\surd$$  |
+
+**LASTVT  集合：**
+
+|  | $$+$$  | $$*$$  | $$\uparrow$$  | $$($$  | $$)$$  | $$i$$  |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $$E$$  | $$\surd$$  | $$\surd$$  | $$\surd$$  |  | $$\surd$$  | $$\surd$$  |
+| $$T$$  |  | $$\surd$$  | $$\surd$$  |  | $$\surd$$  | $$\surd$$  |
+| $$F$$  |  |  | $$\surd$$  |  | $$\surd$$  | $$\surd$$  |
+| $$P$$  |  |  |  |  | $$\surd$$  | $$\surd$$  |
+
+### 5.8 构造优先关系表算法程序实现
+
+概念请看 **5.4** 部分
+
+* > FOR 每条产生式 $$P \rightarrow X_1 X_2 \dots X_n$$ DO
+  >
+  >         FOR i:= 1 TO n-1 DO
+  >
+  >         BEGIN
+  >
+  >                 IF $$X_i$$ 和 $$X_{i+1}$$ 均为终结符 THEN 置 $$X_i \eqcirc X_{i+1}$$ 
+  >
+  >                 IF $$i \le n-2$$ 且 $$X_i$$ 和 $$X_{i+2}$$ 均为终结符，但 $$X_{i+1}$$ 为非终结符 THEN $$X_i \eqcirc X_{i+2}$$                                                   
+  >
+  >                 IF $$X_i$$ 为终结符而 $$X_{i+1}$$ 为非终结符 THEN
+  >
+  >                         FOR $$FIRSTVT(X_{i+1})$$ 中每个 $$a$$ DO 置 $$X_i \lessdot a$$ 
+  >
+  >                 IF $$X_i$$ 为f非终结符而 $$X_{i+1}$$ 为终结符 THEN
+  >
+  >                         FOR $$LASTVT(X_i)$$ 中每个 $$a$$ DO 置 $$a \gtrdot X_{i+1}$$ 
+  >
+  >         END
+
+### 5.9 示例
+
+接着 **5.7** 的示例
+
+$$G$$ **的算符优先关系表**
+
+|  | $$+$$ **** | $$*$$ **** | $$\uparrow$$ **** | $$($$ **** | $$)$$ **** | $$i$$ **** |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $$+$$ **** | $$\gtrdot$$  | $$\lessdot$$  | $$\lessdot$$  | $$\lessdot$$  | $$\gtrdot$$  | $$\lessdot$$  |
+| $$*$$ **** | $$\gtrdot$$  | $$\gtrdot$$  | $$\lessdot$$  | $$\lessdot$$  | $$\gtrdot$$  | $$\lessdot$$  |
+| $$\uparrow$$ **** | $$\gtrdot$$  | $$\gtrdot$$  | $$\lessdot$$  | $$\lessdot$$  | $$\gtrdot$$  | $$\lessdot$$  |
+| $$($$ **** | $$\lessdot$$  | $$\lessdot$$  | $$\lessdot$$  | $$\lessdot$$  | $$\eqcirc$$  | $$\lessdot$$  |
+| $$)$$ **** | $$\gtrdot$$  | $$\gtrdot$$  | $$\gtrdot$$  |  | $$\gtrdot$$  |  |
+| $$i$$ **** | $$\gtrdot$$  | $$\gtrdot$$  | $$\gtrdot$$  |  | $$\gtrdot$$  |  |
+
+### 5.10 算符优先分析算法实现
+
+**素短语：**如果一个短语中，至少包含一个终结符，并且，除了它自身外不再含有任何更小的素短语
+
+**最左素短语：**处于句型最左边的那个素短语
+
+**例子：**文法 ****$$G(E)$$ 
+
+                    ****$$E \rightarrow E + T \mid T \\  T \rightarrow  T * F \mid F \\ F \rightarrow P \uparrow F \mid P \\  F \rightarrow (E) \mid i$$                                        ****![](../.gitbook/assets/image%20%2869%29.png) ****
+
+短语： $$T、F、P、i、F*P、T+F*P、T+F*P+i$$ 
+
+直接短语： $$T、F、P、i$$ 
+
+句柄： $$T$$ 
+
+素短语： $$F*P、i$$ 
+
+最左素短语： $$F*P$$ 
+
+
+
+上面的例子是人工手动找最左素短语，下面介绍编程自己找最左素短语
+
+
+
+算法优先文法句型（包括两个 \# 之间）的一般形式写成：$$\# N_1 a_1 N_2 a_2 \dots N_n a_n N_{n+1} \#$$ ，其中每个 $$a_i$$ 都是终结符， $$N_i$$ 是可有可无的非终结符
+
+
+
+**定理：**一个算符优先文法 $$G$$ 的任何句型的最左素短语是满足如下条件的最左子串
+
+
+
