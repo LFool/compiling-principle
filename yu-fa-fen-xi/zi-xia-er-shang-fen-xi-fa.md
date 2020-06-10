@@ -271,5 +271,45 @@ $$G$$ **的算符优先关系表**
 * $$a_j \eqcirc a_{j+1}, \dots , a_{i-1} \eqcirc a_i$$ 
 * $$a_i \gtrdot a_{i+1}$$ 
 
+**算法：**
+
+* > k := 1;
+  >
+  > S\[k\] := '\#';
+  >
+  > REPEAT
+  >
+  >         把下一个输入符号读进 a 中;
+  >
+  >         IF S\[k\] $$\in V_T$$ THEN j := k ELSE j := k - 1;
+  >
+  >         WHILE S\[j\] $$\gtrdot$$ a DO
+  >
+  >         BEGIN
+  >
+  >                 REPEAT
+  >
+  >                         Q := S\[j\];
+  >
+  >                         IF S\[j - 1\] $$\in V_T$$ THEN j := j - 1 ELSE j := j - 2;
+  >
+  >                 UNTIL S\[j\] $$\lessdot Q$$ 
+  >
+  >                 把 S\[j + 1\] ... S\[k\] 归约为某个 N;
+  >
+  >                 k := j + 1;
+  >
+  >                 S\[k\] := N;
+  >
+  >         END OF WHILE; 
+  >
+  >         IF S\[j\] $$\lessdot$$ a OR S\[j\] $$\eqcirc$$ a THEN
+  >
+  >                 BEGIN k := k + 1; S\[k\] := a END
+  >
+  >         ELSE ERROR /\* 调用出错诊断程序 \*/
+  >
+  > UNTIL a='\#'
+
 
 
