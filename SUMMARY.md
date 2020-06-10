@@ -6,4 +6,5 @@
 * [第三章 词法分析](di-san-zhang-ci-fa-fen-xi.md)
 * [语法分析](yu-fa-fen-xi/README.md)
   * [自上而下分析法](yu-fa-fen-xi/zi-shang-er-xia-fen-xi.md)
+  * [自下而上分析法](yu-fa-fen-xi/zi-xia-er-shang-fen-xi-fa.md)
 
