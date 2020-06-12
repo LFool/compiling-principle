@@ -416,5 +416,20 @@ $$1. E \rightarrow E + T \\  2. E \rightarrow T \\  3. T \rightarrow T * F \\  4
 
 ### 6.3 LR\(0\) 项目集规范族的构造
 
+**字的前缀**：指字的任意首部，如字 $$abc$$ 的前缀有 $$\epsilon , a, ab, abc$$ 
 
+**活前缀**：不含句柄之后的任何符号的前缀。对于规范句型 $$\alpha\beta\gamma$$ ， $$\beta$$ 为句柄，如果 $$\alpha \beta = u_1u_2 \dots u_r$$ ，则符号串 $$u_1u_2\dots u_i (1 \le i \le r)$$ 是 $$\alpha\beta\gamma$$ 的活前缀（ $$\gamma $$ 必定为终结符串）
+
+规范归约的过程中，保证分析栈中的总是**活前缀**，就说明分析采用的移进 / 归约动作是正确的
+
+
+
+文法 G 的每个产生式的右部添加一个圆点称为 G 的 **LR\(0\) 项目**
+
+如： $$A \rightarrow XYZ$$ 有四个项目： $$A \rightarrow \cdot XYZ；A \rightarrow  X\cdot YZ；A \rightarrow  XY\cdot Z；A \rightarrow  XYZ\cdot $$ 
+
+* $$A \rightarrow \alpha \cdot$$ 称为 “**归约项目**”
+* 归约项目 $$S'\rightarrow \alpha \cdot$$ 称为 “**接受项目**”
+* $$A \rightarrow \alpha \cdot a \beta (a \in V_T) $$ 称为 “**移进项目**”
+* $$A \rightarrow \alpha \cdot B \beta (B \in V_N) $$ 称为 “**待约项目**”
 
