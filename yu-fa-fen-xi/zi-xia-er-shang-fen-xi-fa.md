@@ -358,7 +358,7 @@ $$G$$ **的算符优先关系表**
 
 LR 分析法：把“历史”及“展望”综合抽象成**状态**；由栈顶的**状态**和**现行的输入符号**唯一确定每一步的工作
 
-![](../.gitbook/assets/image%20%2874%29.png)
+![](../.gitbook/assets/image%20%2876%29.png)
 
 LR 分析器的核心就是一张分析表
 
@@ -389,7 +389,7 @@ $$(s_0s_1 \dots s_m，\# X_1 \dots X_m， a_ia_{i+1} \dots a_n \#)$$
 
 文法 G\(E\)：
 
-$$1. E \rightarrow E + T \\  2. E \rightarrow T \\  3. T \rightarrow T * F \\  4. T \rightarrow F \\ 5. F \rightarrow (E) \\ 6. F \rightarrow i$$   ![](../.gitbook/assets/image%20%2873%29.png) 
+$$1. E \rightarrow E + T \\  2. E \rightarrow T \\  3. T \rightarrow T * F \\  4. T \rightarrow F \\ 5. F \rightarrow (E) \\ 6. F \rightarrow i$$   ![](../.gitbook/assets/image%20%2875%29.png) 
 
 | 步骤 | 状态 | 符号 | 输入串 |
 | :---: | :---: | :---: | :---: |
@@ -452,11 +452,11 @@ $$12. A \rightarrow \cdot d \\ 13. A \rightarrow d\cdot$$  $$14. B \rightarrow \
 
 识别活前缀的 NFA
 
-![](../.gitbook/assets/image%20%2875%29.png)
+![](../.gitbook/assets/image%20%2877%29.png)
 
 识别活前缀 DFA
 
-![](../.gitbook/assets/image%20%2872%29.png)
+![](../.gitbook/assets/image%20%2873%29.png)
 
 识别构成一个文法活前缀的 DFA 的项目集（状态）的全体称为文法的一个 **LR\(0\) 项目集规范族**
 
@@ -571,6 +571,42 @@ LR\(0\) 文法太简单，没有实用价值。一个项目集里可能既存在
 1. 若 $$a $$ 是某个 $$a_i，i = 1,2,\cdots , m$$ ，则移进
 2. 若 $$a \in FOLLOW(B_i)， i = 1,2,\cdots , n$$ ，则用产生式 $$B_i \rightarrow \alpha$$ 进行归约
 3. 此外，报错
+
+### 6.6 构造 SLR\(1\) 分析表方法
+
+首先把 G 拓广为 G'，对 G' 构造 LR\(0\) 项目集规范族 C 和活前缀识别自动机的状态 转换函数 GO
+
+然后使用 C 和 GO ，按照下面的算法构造 SLR 分析表
+
+* 令每个项目集 $$I_k$$ 的下标 k 作为分析器的状态，包含项目 $$S' \rightarrow \cdot S$$ 的集合 $$I_k$$ 的下标 k 的分析器的初态
+
+
+
+SLR\(1\)分析表的 ACTION 和 GOTO 子表构造
+
+1. 若项目 $$A \rightarrow \alpha \cdot a \beta$$ 属于 $$I_k$$ 且 $$GO(I_k, a) = I_j$$ ， $$a$$ 为终结符，则置 $$ACTION[k, a]$$ 为 $$sj$$ 
+2. 若项目 $$A \rightarrow \alpha \cdot$$ 属于 $$I_k$$ ，那么，对**任何终结符** $$a$$ ， $$a \in FOLLOW(A)$$ ，置 $$ACTION[k, a]$$ 为 $$rj$$ （假定产生式 $$A \rightarrow \alpha$$ 是文法 G' 的第 j 个产生式）
+3. 若项目 $$S' \rightarrow S \cdot$$ 属于 $$I_k$$ ，则置 $$ACTION[k, \#]$$ 为 $$acc$$ 
+4. 若 $$GO(I_k, A) = I_j$$ ，A 为非终结符，则置 $$GOTO[k, A] = j$$ 
+5. 分析表中凡不能用规则 1 至 4 填入信息的空白格均置入“报错信息”
+
+
+
+SLR\(1\) 和 LR\(0\) 构造的区别：**只有第二步不同**
+
+\*\*\*\*
+
+**接着 6.3 中的例子，构造分析表**
+
+![](../.gitbook/assets/image%20%2872%29.png)
+
+### **6.7 LR\(1\) 分析表的构造**
+
+\*\*\*\*
+
+\*\*\*\*
+
+\*\*\*\*
 
 
 
