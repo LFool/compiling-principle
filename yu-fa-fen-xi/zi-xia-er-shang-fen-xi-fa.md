@@ -562,3 +562,15 @@ LR\(0\) 文法太简单，没有实用价值。一个项目集里可能既存在
 
 
 
+一般情况：
+
+假定 LR\(0\) 规范族的一个项目集 $$\begin{aligned} I = \{  & A_1 \rightarrow \alpha \cdot a_1 \beta_1, A_2 \rightarrow \alpha \cdot a_2 \beta_2 ,  \cdots ,  A_m \rightarrow \alpha \cdot a_m \beta_m,  \\  & B_1 \rightarrow \alpha \cdot , B_2 \rightarrow \alpha \cdot , \cdots , B_n \rightarrow \alpha \cdot ,  \} \end{aligned}$$ 
+
+如果集合 $$\{ a_1, \cdots, a_m \} ， FOLLOW(B_1), \cdots , FOLLOW(B_n)$$ 两两不相交（包括不得有两个 FOLLOW 集合有 \#），则：
+
+1. 若 $$a $$ 是某个 $$a_i，i = 1,2,\cdots , m$$ ，则移进
+2. 若 $$a \in FOLLOW(B_i)， i = 1,2,\cdots , n$$ ，则用产生式 $$B_i \rightarrow \alpha$$ 进行归约
+3. 此外，报错
+
+
+
