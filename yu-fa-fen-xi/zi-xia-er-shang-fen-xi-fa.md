@@ -501,3 +501,7 @@ $$S' \rightarrow E \\ E \rightarrow aA \mid bB \\ A \rightarrow cA \mid d \\ B \
 
 $$I_0 = \{ S' \rightarrow \cdot E, E \rightarrow \cdot aA, E \rightarrow \cdot bB \}$$ ****
 
+* $$\begin{aligned} GO(I_0, E) = closure(J) = & closure(\{ S' \rightarrow E \cdot \}) \\ = & \{ S' \rightarrow E \cdot \} = I_1 \end{aligned}$$ 
+* $$\begin{aligned}  GO(I_0, a) = closure(J) = & closure(\{ E \rightarrow a \cdot A \}) \\ = & \{ E \rightarrow  a \cdot A, A \rightarrow \cdot cA, A \rightarrow \cdot d \} = I_2 \end{aligned} $$ 
+* $$\begin{aligned}  GO(I_0, b) = closure(J) = & closure(\{ E \rightarrow b \cdot B \}) \\ = & \{ E \rightarrow  b \cdot B, B \rightarrow \cdot cB, B \rightarrow \cdot d \} = I_3 \end{aligned} $$ 
+
