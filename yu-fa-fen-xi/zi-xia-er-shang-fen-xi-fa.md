@@ -600,11 +600,95 @@ SLR\(1\) 和 LR\(0\) 构造的区别：**只有第二步不同**
 
 ![](../.gitbook/assets/image%20%2872%29.png)
 
+### \*\*\*\*
+
 ### **6.7 LR\(1\) 分析表的构造**
 
 \*\*\*\*
 
-_SLR冲突消解存在的问题：_计算 FOLLOW 集合所得到的超前符号集合可能大于实际能出现的超前符号集
+**SLR冲突消解存在的问题：**计算 FOLLOW 集合所得到的超前符号集合可能大于实际能出现的超前符号集
+
+* SLR 在方法中，如果项目集 $$I_i$$ 含项目 $$A \rightarrow \alpha \cdot$$ ，而且下一个输入符号 $$a \in FOLLOW(A)$$ ，则状态 i 面临 $$a$$ 时，可选用 “用 $$A \rightarrow \alpha$$ 归约” 动作
+* 但在有些情况下，当状态 i 显示在栈顶时，栈里的活前缀未必允许把 $$\alpha$$ 归约成 A，因为可能根本就不存在一个形如 $$\beta A \alpha$$ 的规范句型
+* 在这种情况下，用 $$A \rightarrow \alpha$$ 归约不一定合适
+* **FOLLOW 集合提供的信息太宽泛**
+
+\*\*\*\*
+
+我们需要重新定义项目，使得每个项目都附带 k 个终结符
+
+* 每个项目的一般形式是 $$[A \rightarrow \alpha \cdot \beta ，a_1a_2 \cdots a_k]$$ ，这样的一个项目称为一个 LR\(k\) 项目。项目中的 $$a_1a_2\cdots a_k$$ 称为它的**向前搜索符串** （**展望串**）
+* 向前搜索符串 仅对 归约项目 $$[A \rightarrow \alpha \cdot ，a_1a_2 \cdots a_k]$$ 有意义
+* 对于任何移进或待约项目 $$[A \rightarrow \alpha \cdot \beta ，a_1a_2 \cdots a_k] , \beta \ne \epsilon$$ ，搜索符串 $$a_1a_2 \cdots a_k$$ 没有直接作用
+
+
+
+我们研究当 $$k = 1$$ 的情况
+
+
+
+**有效项目**
+
+形式上我们说一个 LR\(1\)项目 $$[A \rightarrow \alpha \cdot \beta, a]$$ 对活前缀 $$\gamma$$ 是有效的，如果存在规范推导 $$S' \stackrel{*} \Rightarrow \delta A \omega \Rightarrow \delta \alpha \beta \omega$$
+
+* 其中 $$\gamma = \delta \alpha$$ 
+* $$a$$ 是 $$\omega$$ 的第一个符号，或者 $$a$$ 为 \# 而 $$\omega$$ 为 $$\epsilon$$ 
+
+
+
+**LR\(1\) 项目集规范族**
+
+需要两个函数 CLOSURE 和 GO
+
+$$[A \rightarrow \alpha \cdot B \beta , a]$$ 对活前缀 $$\gamma = \delta \alpha$$ 是有效的，则对于每个形如 $$B = \xi$$ 的产生式，对任何 $$b \in FIRST(\beta a)，[B \rightarrow \cdot \xi, b]$$ 对 $$\gamma$$ 也是有效的
+
+
+
+**项目集的闭包 CLOSURE\(I\)**
+
+1. I 的任何项目都属于 CLOSURE\(I\)
+2. 若项目 $$[A \rightarrow \alpha \cdot B \beta , a]$$ 属于 CLOSURE\(I\)， $$B = \xi$$ 是一个产生式，那么，对于 $$FIRST(\beta a) $$ 的每个终结符 b，如果 $$[B \rightarrow \cdot \xi, b]$$ 原来不在 CLOSURE\(I\) 中，则把它加进去
+3. 重复步骤 2 ，直至 LCLOSURE\(I\) 不再增大为止
+
+
+
+**项目集的装换函数 GO**
+
+令I 是一个项目集，X 是一个文法符号，函数 GO\(I, X\) 定义为： $$GO(I, X) = CLOSURE(J)$$ 其中 $$J = \{任何形如 [A \rightarrow \alpha X \cdot \beta, a] 的项目 \mid [A \rightarrow \alpha \cdot X  \beta, a] \in I \}$$ 
+
+
+
+#### **构造 LR\(1\) 分析表的算法**
+
+令每个项目集 $$I_k$$ 的下标 k 作为分析器的状态，包含项目 $$[S' \rightarrow \cdot S, \# ]$$ 的集合 $$I_k$$ 的下标 k 的分析器的初态
+
+
+
+LR\(0\)分析表的 ACTION 和 GOTO 子表构造
+
+1. 若项目 $$[A \rightarrow \alpha \cdot a \beta, b]$$ 属于 $$I_k$$ 且 $$GO(I_k, a) = I_j$$ ， $$a$$ 为终结符，则置 $$ACTION[k, a]$$ 为 $$sj$$ 
+2. 若项目 $$[A \rightarrow \alpha \cdot, a]$$ 属于 $$I_k$$ ，则置 $$ACTION[k, a]$$ 为 $$rj$$ （假定产生式 $$A \rightarrow \alpha$$ 是文法 G' 的第 j 个产生式）
+3. 若项目 $$[S' \rightarrow \cdot S, \# ]$$ 属于 $$I_k$$ ，则置 $$ACTION[k, \#]$$ 为 $$acc$$ 
+4. 若 $$GO(I_k, A) = I_j$$ ，A 为非终结符，则置 $$GOTO[k, A] = j$$ 
+5. 分析表中凡不能用规则 1 至 4 填入信息的空白格均置入“报错信息”
+
+
+
+**示例：**拓广文法 G\(S'\)
+
+$$0. S' \rightarrow S \\ 1. S \rightarrow BB \\ 2. B \rightarrow aB \\ 3. B \rightarrow b$$ 
+
+![](../.gitbook/assets/image%20%2879%29.png)
+
+![](../.gitbook/assets/image%20%2878%29.png)
+
+
+
+
+
+
+
+
 
 \*\*\*\*
 
