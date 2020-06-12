@@ -505,3 +505,31 @@ $$I_0 = \{ S' \rightarrow \cdot E, E \rightarrow \cdot aA, E \rightarrow \cdot b
 * $$\begin{aligned}  GO(I_0, a) = closure(J) = & closure(\{ E \rightarrow a \cdot A \}) \\ = & \{ E \rightarrow  a \cdot A, A \rightarrow \cdot cA, A \rightarrow \cdot d \} = I_2 \end{aligned} $$ 
 * $$\begin{aligned}  GO(I_0, b) = closure(J) = & closure(\{ E \rightarrow b \cdot B \}) \\ = & \{ E \rightarrow  b \cdot B, B \rightarrow \cdot cB, B \rightarrow \cdot d \} = I_3 \end{aligned} $$ 
 
+
+
+通过 **6.2** 和 **6.3** 我们学了两种构造识别活前缀的 DFA 的方法
+
+* $$项目 \rightarrow NFA \rightarrow DFA$$ 
+* $$Closure \rightarrow GO \rightarrow DFA$$ 
+
+### 6.4 LR\(0\) 分析表
+
+**LR\(0\) 文法**
+
+假设一个文法 G 的拓广文法 G' 的活前缀识别自动机中的每个状态（项目集）不存在下列情况：
+
+1. 既含移进项目又含归约项目
+2. 含多个归约项目
+
+则称 G 是一个 **LR\(0\) 文法**
+
+\*\*\*\*
+
+#### **构造 LR\(0\) 分析表的算法**
+
+令每个项目集 $$I_k$$ 的下标 k 作为分析器的状态，包含项目 $$S' \rightarrow \cdot S$$ 
+
+
+
+
+
