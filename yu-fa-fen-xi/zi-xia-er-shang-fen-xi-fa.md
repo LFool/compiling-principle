@@ -358,7 +358,7 @@ $$G$$ **的算符优先关系表**
 
 LR 分析法：把“历史”及“展望”综合抽象成**状态**；由栈顶的**状态**和**现行的输入符号**唯一确定每一步的工作
 
-![](../.gitbook/assets/image%20%2872%29.png)
+![](../.gitbook/assets/image%20%2873%29.png)
 
 LR 分析器的核心就是一张分析表
 
@@ -389,7 +389,7 @@ $$(s_0s_1 \dots s_m，\# X_1 \dots X_m， a_ia_{i+1} \dots a_n \#)$$
 
 文法 G\(E\)：
 
-$$1. E \rightarrow E + T \\  2. E \rightarrow T \\  3. T \rightarrow T * F \\  4. T \rightarrow F \\ 5. F \rightarrow (E) \\ 6. F \rightarrow i$$   ![](../.gitbook/assets/image%20%2871%29.png) 
+$$1. E \rightarrow E + T \\  2. E \rightarrow T \\  3. T \rightarrow T * F \\  4. T \rightarrow F \\ 5. F \rightarrow (E) \\ 6. F \rightarrow i$$   ![](../.gitbook/assets/image%20%2872%29.png) 
 
 | 步骤 | 状态 | 符号 | 输入串 |
 | :---: | :---: | :---: | :---: |
@@ -424,7 +424,7 @@ $$1. E \rightarrow E + T \\  2. E \rightarrow T \\  3. T \rightarrow T * F \\  4
 
 
 
-文法 G 的每个产生式的右部添加一个圆点称为 G 的 **LR\(0\) 项目**
+项目概念：文法 G 的每个产生式的右部添加一个圆点称为 G 的 **LR\(0\) 项目**
 
 如： $$A \rightarrow XYZ$$ 有四个项目： $$A \rightarrow \cdot XYZ；A \rightarrow  X\cdot YZ；A \rightarrow  XY\cdot Z；A \rightarrow  XYZ\cdot $$ 
 
@@ -432,4 +432,31 @@ $$1. E \rightarrow E + T \\  2. E \rightarrow T \\  3. T \rightarrow T * F \\  4
 * 归约项目 $$S'\rightarrow \alpha \cdot$$ 称为 “**接受项目**”
 * $$A \rightarrow \alpha \cdot a \beta (a \in V_T) $$ 称为 “**移进项目**”
 * $$A \rightarrow \alpha \cdot B \beta (B \in V_N) $$ 称为 “**待约项目**”
+
+构造识别文法所有活前缀的 NFA 方法
+
+1. 若状态 i 为 $$X \rightarrow X_1 \cdots X_{i+1} \cdot X_i \cdots X_n$$ ，状态 j 为 $$X \rightarrow X_1 \cdots X_{i-1} X_i \cdot X_{i+1} \cdots X_n$$ ，则从状态 i 画一条标志为 $$X_i$$ 的有向边到状态 j
+2. 若状态 i 为 $$X \rightarrow \alpha \cdot A \beta$$ ，A 为非终结符，则从状态 i 画一条 $$\epsilon $$ 边到所有状态 $$A \rightarrow \cdot \gamma$$ 
+
+
+
+**例：**文法 $$G(S')$$ 
+
+$$S' \rightarrow E \\ E \rightarrow aA \mid bB \\ A \rightarrow cA \mid d \\ B \rightarrow cB \mid d$$ 
+
+该文法的项目有：
+
+$$1. S' \rightarrow \cdot E \\ 2. S' \rightarrow  E \cdot $$  $$3. E \rightarrow \cdot aA \\ 4. E \rightarrow a \cdot A \\ 5. E \rightarrow a A \cdot$$  $$6. E \rightarrow \cdot bB \\  7. E \rightarrow b \cdot B \\   8. E \rightarrow b B \cdot $$   $$9. A \rightarrow \cdot cA \\  10. A \rightarrow c\cdot A \\  11. A \rightarrow cA\cdot  $$  
+
+$$12. A \rightarrow \cdot d \\ 13. A \rightarrow d\cdot$$  $$14. B \rightarrow \cdot cB \\ 15. B \rightarrow c\cdot B \\   16. B \rightarrow cB\cdot  $$ $$17. B \rightarrow \cdot d \\ 18. B \rightarrow d\cdot$$ 
+
+识别活前缀的 NFA
+
+![](../.gitbook/assets/image%20%2874%29.png)
+
+识别活前缀 DFA
+
+![](../.gitbook/assets/image%20%2871%29.png)
+
+
 
