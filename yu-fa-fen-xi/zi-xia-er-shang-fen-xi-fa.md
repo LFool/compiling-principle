@@ -458,5 +458,46 @@ $$12. A \rightarrow \cdot d \\ 13. A \rightarrow d\cdot$$  $$14. B \rightarrow \
 
 ![](../.gitbook/assets/image%20%2871%29.png)
 
+识别构成一个文法活前缀的 DFA 的项目集（状态）的全体称为文法的一个 **LR\(0\) 项目集规范族**
 
+\*\*\*\*
+
+**有效项目**
+
+我们说项目 $$A \rightarrow \beta_1 \cdot \beta_2$$ 对活前缀 $$\alpha \beta_1$$ 是有效的，其条件是存在规范推导 $$S' \stackrel{*} \Rightarrow \alpha A \omega \Rightarrow \alpha \beta_1 \beta_2 \omega$$ 
+
+
+
+**拓广文法**
+
+* 假设文法 G，以 S 为开始符号
+* 构造一个G'，它包含了整个 G，但引进了一个不出现在 G 中的非终结符 S'，并加进一个新的产生式 $$S' \rightarrow S$$ ，S' 是 G' 的开始符号
+* 称 G' 是 G 的**拓广文法**
+* G' 唯一的接受态：仅含项目 $$S' \rightarrow S \cdot$$ 的状态
+
+
+
+**闭包 CLOSURE**
+
+假设 I 是文法 G' 的任一项目集，定义和构造 I 的闭包 CLOSURE\(I\) 如下：
+
+* I 的任何项目集都属于 CLOSURE\(I\)
+* 若 $$A \rightarrow \alpha \cdot B \beta$$ 属于 CLOSURE\(I\)，那么对任何关于 B 的产生式 $$B \rightarrow \gamma$$ ，项目 $$B \rightarrow \cdot \gamma$$ 也属于CLOSURE\(I\)
+* 重复执行上述两个步骤直至 CLOSURE\(I\) 不再增大为止
+
+
+
+**GO函数**
+
+为了识别活前缀，我们定义一个状态转换函数 GO 的一个状态转换函数。I 是一个项目集，X 是一个文法符号。函数值 GO\(I, X\) 定义为： $$GO(I, X) = CLOSURE(J)$$ 其中 $$J = \{任何形如 A \rightarrow \alpha X \cdot \beta 的项目 \mid A \rightarrow \alpha \cdot X  \beta \in I \}$$ 
+
+直观上说，若 I 是对某个活前缀 $$\gamma$$ 有效的项目集，那么，GO\(I, X\) 便是对 $$\gamma X$$ 有效的项目集
+
+\*\*\*\*
+
+**例：**文法 $$G(S')$$ 
+
+$$S' \rightarrow E \\ E \rightarrow aA \mid bB \\ A \rightarrow cA \mid d \\ B \rightarrow cB \mid d$$ 
+
+$$I_0 = \{ S' \rightarrow \cdot E, E \rightarrow \cdot aA, E \rightarrow \cdot bB \}$$ ****
 
