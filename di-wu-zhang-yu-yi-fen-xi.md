@@ -266,6 +266,21 @@
    * 产生式： $$T \rightarrow T_1 * F$$ 
    * 语义规则： $$T.val := T_1.val * F.val$$ 
    * 建立产生式和语义动作： $$T \rightarrow T_1 * F  \{T.val := T_1.val * F.val\}$$ 
-2. 
+2. 如果既有**综合属性**又有**继承属性**，在建立翻译者模式时就必须保证：
+   * 产生式右边的符号的**继承属性**必须在这个符号以前的动作中计算出来
+   * 一个动作不能引用这个动作的右边的符号的**综合属性**
+   * 产生式左边非终结符的**综合属性**只有在它所引用的所有属性都计算出来以后才能计算。计算这种属性的动作通常可放在产生式右端的**末尾**
+
+     **错误**：$$S \rightarrow A_1A_2 \{ A_1.in := 1; A_2.in := 2 \}  \\ A \rightarrow a \{ print(A.in) \} $$ ****
+
+**例子：**
+
+| **产生式** | 语义规则 | 翻译后的结果 |
+| :--- | :--- | :--- |
+| $$S \rightarrow B$$  | $$B.ps := 10 \\ S.ht := B.ht$$  | $$\begin{aligned} S \rightarrow \{&B.ps := 10\}  \\ &B \{ S.ht := B.ht \} \end{aligned}$$  |
+| $$B \rightarrow B_1B_2$$  | $$B_1.ps := B.ps \\ B_2.ps := B.ps \\ B.ht := max(B_1.ht, B_2.ht)$$  | $$\begin{aligned}  S \rightarrow \{&B_1.ps := B.ps\}  \\  &B_1 \{ B_2.ps := B.ps \} \\ &B_2 \{ B.ht := max(B_1.ht, B_2.ht) \}  \end{aligned}$$  |
+| $$B \rightarrow B_1  sub  B_2$$  |  $$B_1.ps := B.ps \\ B_2.ps := shrink(B.ps) \\ B.ht := disp(B_1.ht, B_2.ht)$$  | $$\begin{aligned}  S \rightarrow \{&B_1.ps := B.ps\}  \\  &B_1 sub  \{ B_2.ps := shrink(B.ps) \} \\ &B_2 \{ B.ht :=disp(B_1.ht, B_2.ht) \}  \end{aligned}$$  |
+| $$B \rightarrow text$$  | $$B.ht := text.h * B.ps$$  | $$B \rightarrow text \{ B.ht := text.h * B.ps \}$$  |
+
 
 
