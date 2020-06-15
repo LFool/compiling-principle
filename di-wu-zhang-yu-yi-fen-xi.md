@@ -75,7 +75,7 @@
 
 **如：**
 
-![](.gitbook/assets/image%20%2882%29.png)
+![](.gitbook/assets/image%20%2883%29.png)
 
 **例子：**句子 $$real、id_1、id_2、id_3$$ 的带注释的语法树的依赖图
 
@@ -87,7 +87,7 @@
 | $$L \rightarrow L_1, id$$  | $$L_1.in := L.in \\ addtype(id.netry, L.in)$$ | $$L 指向 L_1 \\ L 和 id 指向 addtype$$  |
 | $$L \rightarrow id$$  | $$addtype(id.netry, L.in)$$ | $$L 和 id 指向 addtype$$  |
 
-![](.gitbook/assets/image%20%2880%29.png)
+![](.gitbook/assets/image%20%2881%29.png)
 
 **良定义的属性文法**
 
@@ -186,7 +186,7 @@
 
 构造 $$a - 4 + c$$ 的抽象语法树
 
-![](.gitbook/assets/image%20%2881%29.png)
+![](.gitbook/assets/image%20%2882%29.png)
 
 ## 3. S- 属性文法的自下而上计算
 
@@ -197,4 +197,44 @@
 * 分析器可以保存与栈中文法符号有关的**综合属性**值，每当进行归约时，新的属性值就由栈中正在归约的产生式右边符号的属性值来计算
 
 
+
+**S- 属性文法的计算**
+
+* 在分析栈中使用一个附加的域来存放综合属性值
+* 假设语义规则 $$A.a := f(X.x, Y.y, Z.z)$$ 是对应于产生式 $$A \rightarrow XYZ$$ 
+
+![](.gitbook/assets/image%20%2880%29.png)
+
+
+
+**例子**
+
+| 产生式 | 语义规则 | 代码段 |
+| :---: | :---: | :---: |
+| $$L \rightarrow En$$  | $$print(E.val)$$  | $$print(val[top])$$  |
+| $$E \rightarrow E_1 + T$$  | $$E.val := E_1.val + T.val$$  | $$val[ntop] := val[top -2] + val[top]$$  |
+| $$E \rightarrow T$$  | $$E.val := T.val$$  |  |
+| $$T \rightarrow T_1 * F$$  | $$T.val := T_1.val * F.val$$  | $$val[ntop] := val[top -2] * val[top]$$  |
+| $$T \rightarrow F$$  | $$T.val := F.val$$  |  |
+| $$F \rightarrow (E)$$  | $$F.val := E.val$$  | $$val[ntop] := val[top -1]$$  |
+| $$F \rightarrow digit$$  | $$F.val := digit.lexval$$  |  |
+
+| state | sym | val | 输入 | 用到的产生式 |
+| :--- | :--- | :--- | :--- | :--- |
+| 0 | $$\# $$  | $$-$$  | $$3 * 5 + 4n$$  |  |
+| 0 5 | $$\# 3$$  | $$- 3$$  | $$* 5 + 4n$$  |  |
+| 0 3 | $$\# F$$  | $$- 3$$  | $$* 5 + 4n$$  | $$F \rightarrow digit$$  |
+| 0 2 | $$\# T$$  | $$- 3$$  | $$* 5 + 4n$$  | $$T \rightarrow F$$  |
+| 0 2 7 | $$\# T *$$  | $$- 3 -$$  | $$5 + 4n$$  |  |
+| 0 2 7 5 | $$\# T * 5$$  | $$- 3 - 5$$  | $$+ 4n$$  |  |
+| 0 2 7 5 10 | $$\# T * F$$  | $$- 3 - 5$$  | $$+ 4n$$ | $$F \rightarrow digit$$  |
+| 0 2 |  $$\# T$$ |  $$- 15$$ | $$+ 4n$$ |  $$T \rightarrow T * F$$  |
+| 0 1 | $$\# E$$  | $$- 15$$  | $$+ 4n$$ | $$E \rightarrow T$$  |
+| 0 1 6 | $$\# E +$$  | $$- 15 -$$  | $$4n$$ |  |
+| 0 1 6 5 | $$\# E + 4$$  | $$- 15 - 4$$  | $$n$$  |  |
+| 0 1 6 3 | $$\# E + F$$  | $$- 15 - 4$$  | $$n$$  | $$F \rightarrow digit$$  |
+| 0 1 6 9 | $$\# E + T$$  | $$- 15 - 4$$  | $$n$$  | $$T \rightarrow F$$  |
+| 0 1 | $$\# E$$  | $$- 19$$  | $$n$$  | $$E \rightarrow E + T$$  |
+|  | $$\# En$$ **** | $$- 19 - $$  |  |  |
+|  | $$\# L$$  | $$- 19$$  |  | $$L \rightarrow En$$  |
 
