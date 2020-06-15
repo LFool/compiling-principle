@@ -75,7 +75,7 @@
 
 **如：**
 
-![](.gitbook/assets/image%20%2880%29.png)
+![](.gitbook/assets/image%20%2882%29.png)
 
 **例子：**句子 $$real、id_1、id_2、id_3$$ 的带注释的语法树的依赖图
 
@@ -87,7 +87,7 @@
 | $$L \rightarrow L_1, id$$  | $$L_1.in := L.in \\ addtype(id.netry, L.in)$$ | $$L 指向 L_1 \\ L 和 id 指向 addtype$$  |
 | $$L \rightarrow id$$  | $$addtype(id.netry, L.in)$$ | $$L 和 id 指向 addtype$$  |
 
-![](.gitbook/assets/image%20%2879%29.png)
+![](.gitbook/assets/image%20%2880%29.png)
 
 **良定义的属性文法**
 
@@ -156,4 +156,37 @@
 
 * 在自上而下语法分析中，一个产生式匹配输入串成功时
 * 在自下而上语法分析中，一个产生式被用于进行归约时
+
+
+
+**抽象语法树**
+
+在语法树中去掉那些对翻译不必要的信息，从而获取更有效的源程序中间表达。这种经变换后的语法树称之为**抽象语法树**
+
+![](.gitbook/assets/image%20%2878%29.png)
+
+\*\*\*\*
+
+**简历表达式的抽象语法树**
+
+* $$mknode(op, left, right)$$ 建立一个运算符号结点，标号是 op，两个域指针 left 和 right 分别指向左子树和右子树
+* $$mkleaf(id, entry)$$ 建立一个标识符结点，标号为 id，一个域 entry 指向标识符在符号表中的入口
+* $$mkleaf(num, val)$$ 建立一个数结点，标号为 num，一个域 val 用于存放数的值
+
+建立抽象语法树的语义规则
+
+| 产生式 | 语义规则 |
+| :---: | :---: |
+| $$E \rightarrow E_1 + T$$  | $$E.nptr := mknode('+', E_1.nptr, T.nptr)$$  |
+| $$E \rightarrow E_1 - T$$  | $$E.nptr := mknode('-', E_1.nptr, T.nptr)$$  |
+| $$E \rightarrow T$$  | $$E.nptr := T.nptr$$  |
+| $$T \rightarrow (E)$$  | $$T.nptr := E.nptr$$  |
+| $$T \rightarrow id$$  | $$T.nptr := mkleaf(id, id.entry)$$  |
+| $$T \rightarrow num$$  | $$T.nptr := mkleaf(num, num.val)$$  |
+
+构造 $$a - 4 + c$$ 的抽象语法树
+
+![](.gitbook/assets/image%20%2881%29.png)
+
+## 3. S- 属性文法的自下而上计算
 
