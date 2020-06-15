@@ -678,7 +678,7 @@ LR\(0\)分析表的 ACTION 和 GOTO 子表构造
 
 $$0. S' \rightarrow S \\ 1. S \rightarrow BB \\ 2. B \rightarrow aB \\ 3. B \rightarrow b$$ 
 
-![](../.gitbook/assets/image%20%2884%29.png)
+![](../.gitbook/assets/image%20%2885%29.png)
 
 ![](../.gitbook/assets/image%20%2879%29.png)
 

@@ -75,7 +75,7 @@
 
 **如：**
 
-![](.gitbook/assets/image%20%2883%29.png)
+![](.gitbook/assets/image%20%2884%29.png)
 
 **例子：**句子 $$real、id_1、id_2、id_3$$ 的带注释的语法树的依赖图
 
@@ -87,7 +87,7 @@
 | $$L \rightarrow L_1, id$$  | $$L_1.in := L.in \\ addtype(id.netry, L.in)$$ | $$L 指向 L_1 \\ L 和 id 指向 addtype$$  |
 | $$L \rightarrow id$$  | $$addtype(id.netry, L.in)$$ | $$L 和 id 指向 addtype$$  |
 
-![](.gitbook/assets/image%20%2881%29.png)
+![](.gitbook/assets/image%20%2882%29.png)
 
 **良定义的属性文法**
 
@@ -186,7 +186,7 @@
 
 构造 $$a - 4 + c$$ 的抽象语法树
 
-![](.gitbook/assets/image%20%2882%29.png)
+![](.gitbook/assets/image%20%2883%29.png)
 
 ## 3. S- 属性文法的自下而上计算
 
@@ -289,4 +289,27 @@
   * 把嵌入在产生式中的每个语义动作用不同的标记非终结符 M 代替，并把这个动作放在产生式 $$M \rightarrow \epsilon$$ 的末尾
 
 $$\begin{aligned} E \rightarrow &TR \\ R \rightarrow &+ T \{ print('+') \} R \\ \mid &- T \{ print('-') \} R \\ \mid &\epsilon \\ T \rightarrow & num \{ print(num.val) \} \end{aligned}$$          $$\underrightarrow{\text{转换后}}$$       $$\begin{aligned}  E \rightarrow &TR \\  R \rightarrow &+ T M R \mid - TNR \mid \epsilon \\  T \rightarrow & num \{ print(num.val) \} \\ M \rightarrow & \epsilon \{ print('+') \} \\ N \rightarrow & \epsilon \{ print('-') \} \\ \end{aligned}$$ 
+
+### 4.3 自顶向下翻译
+
+* 动作是在处于相同位置上的符号被展开（匹配成功）时执行的
+* 为了构造不带回溯的自顶向下语法分析，必须消除文法中的左递归
+* 当消除一个翻译模式的基本文法的左递归时同时考虑**属性** —— 适合带**综合属性**的翻译模式
+
+\*\*\*\*
+
+**一般方法**
+
+假设有翻译模式： $$A \rightarrow A_1 Y \{A.a := g(A_1.a, Y.y)\} \\ A \rightarrow X \{A.a := f(X.x)\}$$ 
+
+它的每个文法符号都有一个综合属性，用小写字母表示，g 和 f 是任意函数
+
+* 消除左递归： $$A \rightarrow X R  \\ R \rightarrow YR \mid \epsilon $$ 
+* 翻译模式变为： $$\begin{aligned} A \rightarrow &X \{R.i := f(X.x)\} \\ &R \{ A.a := R.s \} \\ R \rightarrow &Y \{R_1.i := g(R.i, Y.y)\} \\ &R_1 \{ R.s := R_1.s \} \\ R \rightarrow &\epsilon \{ R.s := R.i \}  \end{aligned}$$ 
+
+  其中 R.i ：R 前面子表达式的值；R.s ：分析完 R 时子表达式的值
+
+![](.gitbook/assets/image%20%2881%29.png)
+
+### 4.4 递归下降翻译器的设计
 
