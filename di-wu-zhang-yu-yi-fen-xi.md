@@ -75,7 +75,7 @@
 
 **如：**
 
-![](.gitbook/assets/image%20%2884%29.png)
+![](.gitbook/assets/image%20%2886%29.png)
 
 **例子：**句子 $$real、id_1、id_2、id_3$$ 的带注释的语法树的依赖图
 
@@ -176,7 +176,7 @@
 建立抽象语法树的语义规则
 
 | 产生式 | 语义规则 |
-| :---: | :---: |
+| :--- | :--- |
 | $$E \rightarrow E_1 + T$$  | $$E.nptr := mknode('+', E_1.nptr, T.nptr)$$  |
 | $$E \rightarrow E_1 - T$$  | $$E.nptr := mknode('-', E_1.nptr, T.nptr)$$  |
 | $$E \rightarrow T$$  | $$E.nptr := T.nptr$$  |
@@ -186,7 +186,7 @@
 
 构造 $$a - 4 + c$$ 的抽象语法树
 
-![](.gitbook/assets/image%20%2883%29.png)
+![](.gitbook/assets/image%20%2884%29.png)
 
 ## 3. S- 属性文法的自下而上计算
 
@@ -311,5 +311,34 @@ $$\begin{aligned} E \rightarrow &TR \\ R \rightarrow &+ T \{ print('+') \} R \\ 
 
 ![](.gitbook/assets/image%20%2881%29.png)
 
+
+
+**构造抽象语法树的属性文法定义转化成翻译模式**
+
+| 产生式 | 语义规则 |
+| :--- | :--- |
+| $$E \rightarrow E_1 + T$$  | $$E.nptr := mknode('+', E_1.nptr, T.nptr)$$  |
+| $$E \rightarrow E_1 - T$$  | $$E.nptr := mknode('-', E_1.nptr, T.nptr)$$  |
+| $$E \rightarrow T$$  | $$E.nptr := T.nptr$$  |
+| $$T \rightarrow (E)$$  | $$T.nptr := E.nptr$$  |
+| $$T \rightarrow id$$  | $$T.nptr := mkleaf(id, id.entry)$$  |
+| $$T \rightarrow num$$  | $$T.nptr := mkleaf(num, num.val)$$  |
+
+先对上述产生式进行消除左递归后：   
+
+| 产生式 | 翻译模式 |
+| :--- | :--- |
+| $$E \rightarrow TR$$  | $$\begin{aligned} E \rightarrow & T \{ R.i := T.nptr \} \\ & R \{ E.nptr := R.s \}  \end{aligned}$$  |
+| $$R \rightarrow +TR_1$$  | $$\begin{aligned} R \rightarrow & -T \{ R_1.i := mknode('+', R.i, T.nptr) \} \\ & R_1 \{ R.s := R_1.s \}  \end{aligned}$$  |
+| $$R \rightarrow -TR_1$$  | $$\begin{aligned} R \rightarrow & -T \{ R_1.i := mknode('-', R.i, T.nptr) \} \\ & R_1 \{ R.s := R_1.s \}  \end{aligned}$$  |
+| $$R \rightarrow \epsilon$$  | $$R \rightarrow \{ R.s := R.i \}$$  |
+| $$T \rightarrow (E)$$  | $$T \rightarrow (E) \{ T.nptr := E.nptr \}$$  |
+| $$T \rightarrow id$$  | $$T \rightarrow id \{ T.nptr := mkleaf(id, id.entry) \}$$  |
+| $$T \rightarrow num$$  | $$T \rightarrow num \{ T.nptr := mkleaf(num, num.val) \}$$  |
+
+![](.gitbook/assets/image%20%2883%29.png)
+
 ### 4.4 递归下降翻译器的设计
+
+
 
