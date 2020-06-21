@@ -8,4 +8,5 @@
   * [自上而下分析法](yu-fa-fen-xi/zi-shang-er-xia-fen-xi.md)
   * [自下而上分析法](yu-fa-fen-xi/zi-xia-er-shang-fen-xi-fa.md)
 * [第五章 语义分析](di-wu-zhang-yu-yi-fen-xi.md)
+* [说明](shuo-ming.md)
 
