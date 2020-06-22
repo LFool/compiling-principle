@@ -50,7 +50,7 @@ $$\alpha _1 \stackrel{+}\Longrightarrow \alpha_n$$ ： $$\alpha _1$$ 经过 1 �
 
 ## 3. 语法分析方法
 
-### 3.1 自上而下分析法（Bottom-up）
+### 3.1 自上而下分析法（Top-down）
 
 **基本思想：**从文法开始符号开始，反复使用各种产生式，寻找“匹配”的**推导**
 
@@ -64,7 +64,7 @@ $$\alpha _1 \stackrel{+}\Longrightarrow \alpha_n$$ ： $$\alpha _1$$ 经过 1 �
 * 非递归实现
 * 直观、简单
 
-### 3.1 自下而上分析法（Top-down）
+### 3.1 自下而上分析法（Bottom-up）
 
 **基本思想**
 
